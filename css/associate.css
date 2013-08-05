@@ -1,0 +1,108 @@
+@-webkit-keyframes associateShake{
+    0% { -webkit-transform: translate(5px, 0); }
+    50% { -webkit-transform: translate(-5px, 0); }
+    100% { -webkit-transform: translate(0, 0); }
+}
+
+@-moz-keyframes associateShake{
+    0% { -moz-transform: translate(5px, 0); }
+    50% { -moz-transform: translate(-5px, 0); }
+    100% { -moz-transform: translate(0, 0); }
+}
+
+@keyframes associateShake{
+    0% { transform: translate(5px, 0); }
+    50% { transform: translate(-5px, 0); }
+    100% { transform: translate(0, 0); }
+}
+
+#enigma.associate{
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+#stack{
+    width: 220px;
+    padding: 60px 0 0 130px;
+    float: left;
+}
+
+#stack div{
+    float: left;
+    width: 81px;
+    height: 81px;
+    padding: 3px;
+    margin: 10px 10px 0 0;
+    background-repeat: no-repeat ;
+    display: none;
+}
+
+#stack #card1{
+    background-position: -183px -92px;
+}
+#stack #card2{
+    background-position: -183px -185px;
+}
+#stack #card3{
+    background-position: -183px 2px;
+}
+#stack #card4{
+    background-position: -89px -91px;
+}
+#stack #card5{
+    background-position: -89px -184px;
+}
+#stack #card6{
+    background-position: -89px 3px;
+}
+
+#target, #label{
+    width: 100px;
+    float: right;
+    margin: 30px 20px 0 0;
+}
+
+#label{
+    margin-right: 130px;
+
+}
+
+#target div, #label div{
+    float: right;
+    width: 90px;
+    height: 90px;
+    margin-top: 20px;
+    background: url('../ui/enigma_sheet.png') no-repeat top left;
+    display: none;
+}
+#label div{
+    margin-top: 21px;
+    background-repeat: no-repeat;
+}
+#label div.label2{
+    background-position: 0 -95px;
+}
+#label div.label3{
+    background-position: 0 -185px;
+}
+
+#target div.hovered{
+    opacity: 0.7;
+}
+
+div.associate div.shake{
+    animation-name: associateShake;
+    animation-duration: 200ms;
+    animation-iteration-count: 4;
+    animation-timing-function: linear;
+
+    -moz-animation-name: associateShake;
+    -moz-animation-duration: 200ms;
+    -moz-animation-iteration-count: 4;
+    -moz-animation-timing-function: linear;
+
+    -webkit-animation-name: associateShake;
+    -webkit-animation-duration: 200ms;
+    -webkit-animation-iteration-count: 4;
+    -webkit-animation-timing-function: linear;
+}

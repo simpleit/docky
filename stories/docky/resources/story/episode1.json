@@ -1,0 +1,40 @@
+{
+    "title": "Docky is Back",
+    "chapterTitle": "Le village des taupes",
+    "chapterNumber": "Chapitre 1",
+    "screens" : [
+
+        {
+            "id": "screen3",
+            "type": "converse",
+            "leftCharacter": "docky",
+            "rightCharacter": "roger",
+            "background": "converse.jpg",
+            "lines": [
+                {
+                    "position": "left",
+                    "text": "Me revoilà parmi vous"
+                },
+                {
+                    "position": "left",
+                    "text": "J'ai bien envie d'élucider quelques mystères..."
+                },
+                {
+                    "position": "right",
+                    "text": "D'ailleurs ||||||||||| je t'ai fait venir pour ça !"
+                }
+            ]
+        },
+        {
+            "id": "screen2",
+            "type": "enigma",
+            "engine": "associate",
+            "background": "enigma.png",
+            "stylesheet": "associate.css",
+            "legend": "Qui mange quoi ?",
+            "assets" : {
+                "stack": "enigma1.png"
+            }
+        }
+    ]
+}

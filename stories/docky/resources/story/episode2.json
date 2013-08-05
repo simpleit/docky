@@ -1,0 +1,49 @@
+{
+    "title": "Docky is Back",
+    "chapterTitle": "Le sentier perdu",
+    "chapterNumber": "Episode 2",
+    "screens" : [
+        {
+            "id": "screen1",
+            "type": "converse",
+            "leftCharacter": "docky",
+            "rightCharacter": "roger",
+            "background": "converse.jpg",
+            "lines": [
+                {
+                    "position": "left",
+                    "text": "Robert !! ||||||||Besoin d'un coup de main pour remplir ton stock de nourriture ?"
+                },
+                {
+                    "position": "right",
+                    "text": "Pourquoi pas !! Mais attention, mes goûts culinaires sont particuliers, comme pour les autres animaux de la forêt. Vérifions tes connaissances ! "
+                },
+                {
+                    "position": "left",
+                    "text": "Je suis prêt à affronter ton courroux !"
+                }
+            ]
+        },
+        {
+            "id": "screen2",
+            "type": "converse",
+            "leftCharacter": "docky",
+            "rightCharacter": "roger",
+            "background": "converse.jpg",
+            "lines": [
+                {
+                    "position": "left",
+                    "text": "Me revoilà parmi vous"
+                },
+                {
+                    "position": "left",
+                    "text": "J'ai bien envie d'élucider quelques mystères..."
+                },
+                {
+                    "position": "right",
+                    "text": "D'ailleurs ||||||||||| je t'ai fait venir pour ça !"
+                }
+            ]
+        }
+    ]
+}

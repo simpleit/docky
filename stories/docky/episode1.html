@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta name="episode" content="episode1">
+
+        <title>Docky</title>
+        <meta content="text/html; charset=utf-8" http-equiv="content-type">
+        <link rel="stylesheet" type="text/css" href="../../css/core/main.css">
+
+        <script type="text/javascript" src="../../js/core/jquery.min.2.0.3.js"></script>
+        <script type="text/javascript" src="../../js/core/jquery-ui.min.1.10.3.js"></script>
+        <script type="text/javascript" src="../../js/core/jquery.imagesloaded.min.js"></script>
+        <script type="text/javascript" src="../../js/core/jquery.easing.1.3.js"></script>
+        <script type="text/javascript" src="../../js/core/jstorage.min.js"></script>
+        <script type="text/javascript" src="../../js/core/ghost_type.1.2.js"></script>
+        <script type="text/javascript" src="../../js/core/lodash.min.1.3.1.js"></script>
+        <script type="text/javascript" src="../../js/core/library.js"></script>
+
+
+    </head>
+    <body>
+        <div id="window">
+            <div id="converse">
+                <div class="leftCharacter"></div>
+                <div class="bubble">
+                    <div class="bubble-arrow"></div>
+                    <div class="bubble-inner"></div>
+                    <img class="next" src="../../ui/play.png">
+                </div>
+                <div class="rightCharacter"> </div>
+            </div>
+            <div id="blackout">
+                <div class="chapter">
+                    <span></span>
+                    <h3></h3>
+                    <span>chargement en cours</span>
+                </div>
+            </div>
+            <div id="introEnigma">
+                <div>
+                    <span style="font-size:130px;top:100px;left:90px;color: #307da1">?</span>
+                    <span style="font-size:200px;top:50px;left:750px;color: #30a140">?</span>
+                    <span style="font-size:140px;top:350px;left:550px;color: #9230a1">?</span>
+                    <span style="font-size:180px;top:310px;left:150px;color: #a17d30">?</span>
+                    <span style="font-size:250px;top:-50px;left:300px;color: #a1303b">?</span>
+                </div>
+            </div>
+
+        </div>
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                core.loadEpisode();
+            });
+        </script>
+    </body>
+</html>
