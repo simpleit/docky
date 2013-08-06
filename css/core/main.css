@@ -170,14 +170,13 @@
         width: 990px;
         height: 557px;
         margin: 30px auto;
-
-        background-size: 100% 100%;
         position:relative;
         overflow: hidden;
     }
 
     #window.welcomeScreen{
         background: url('../../ui/start_screen.png') no-repeat top left;
+        background-size: 100% 100%;
     }
 
     #blackout{
@@ -576,6 +575,47 @@
         left: 131px;
     }
 
+    #helpScreen{
+        width: 82%;
+        height: 60%;
+        position: absolute;
+        background: rgba(0,0,0,0.9);
+        left: 50px;
+        top: 40px;
+        border-radius: 20px;
+        padding: 40px;
+        color: #FFF;
+        z-index: 30;
+        font-size: 250%;
+        display: none;
+    }
+
+    #helpScreen div{
+        margin-top: 20px;
+        text-align: center;
+    }
+    #helpScreen div.accept{
+        float: right;
+        margin-top: 40px;
+        width: 35%;
+        font-size: 270%;
+        text-align: right;
+        cursor: pointer;
+    }
+    #helpScreen div.accept:hover, #helpScreen div.accept:focus{
+        color: green;
+    }
+    #helpScreen div.deny{
+        float: left;
+        margin-top: 40px;
+        width: 35%;
+        font-size: 270%;
+        text-align: left;
+        cursor: pointer;
+    }
+    #helpScreen div.deny:hover, #helpScreen div.deny:focus{
+        color: red;
+    }
 
 
     #endEnigma{

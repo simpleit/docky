@@ -65,6 +65,9 @@ var core = {
 
     },
 
+    /**
+     * Show or hide options screen
+     */
     toggleOptionsScreen: function(){
         if($('#optionsForm').hasClass('open')){
             // Fermeture
@@ -272,31 +275,80 @@ var core = {
 
         /* Prepare enigma screen */
         $('<div>').attr('class', 'breadcrumb').html('Enigme 1').appendTo($enigma);
-        $('<div>').attr('class', 'legend').html(this.activeScreen.legend).appendTo($enigma);
-        $('<a>').attr('id', 'valid').appendTo($enigma);
-        $('<a>').attr('id', 'help').appendTo($enigma);
-        $('<span>').appendTo($('#valid'));
-        $('<span>').appendTo($('#help'));
+        $('<div>').attr('class', 'legend').html(self.activeScreen.legend).appendTo($enigma);
 
-        eval("var activeEngine = " + this.activeScreen.engine);
-        this.activeEngine = activeEngine;
+        eval("var activeEngine = " + self.activeScreen.engine);
+        self.activeEngine = activeEngine;
+        self.activeEngine.container = $enigma;
+        self.activeEngine.init(self.activeScreen);
 
-        this.activeEngine.container = $enigma;
-        this.activeEngine.init(this.activeScreen);
+        self.enigmaActions();
         $('#introEnigma').fadeOut();
-
-        $('#valid').delay(700).animate({right: '+=130', bottom: '+=130'}, 700, 'easeInOutBack', function(){
-            $('#help').animate({left: '+=130', bottom: '+=130'}, 700, 'easeInOutBack');
-            $('div.breadcrumb').animate({top: '0'}, 700, 'easeOutCirc', function(){
-                $('div.legend').animate({bottom: '20px'}, 700, 'easeOutCirc');
-            });
-        });
 
         $.jStorage.subscribe("enigmaResolve", function(channel, nbTry){
             self.enigmaEnd(nbTry);
         });
     },
 
+    /**
+     * Prepare enigma special actions
+     */
+    enigmaActions: function(){
+        var self= this,
+            $enigma = $('#enigma'),
+            help = '<div>'+self.activeScreen.help+'</div><div class="accept">Oui</div><div class="deny">Non</div>',
+            $help = $('<div>').attr('id', 'helpScreen').prependTo($enigma).html(help),
+            $valid = $('<a>').attr('id', 'valid').appendTo($enigma);
+
+        $('div.accept', $help).click(function(){
+            self.activeEngine.help();
+            self.toggleHelpScreen(true);
+        });
+        $('div.deny', $help).click(function(){
+            self.toggleHelpScreen(false);
+        });
+
+        $('<a>').attr('id', 'help').appendTo($enigma);
+        $('<span>').appendTo($valid);
+        $('<span>').appendTo($('#help'));
+
+        $valid.delay(700).animate({right: '+=130', bottom: '+=130'}, 700, 'easeInOutBack', function(){
+            $('#help').animate({left: '+=130', bottom: '+=130'}, 700, 'easeInOutBack').click(function(){
+                self.toggleHelpScreen(false);
+            });
+            $('div.breadcrumb').animate({top: '0'}, 700, 'easeOutCirc', function(){
+                $('div.legend').animate({bottom: '20px'}, 700, 'easeOutCirc');
+            });
+        });
+
+        $valid.click(function(e){
+            e.preventDefault();
+            self.activeEngine.checkResponse();
+        });
+    },
+
+    /**
+     * Show or display help screen
+     * @param close
+     */
+    toggleHelpScreen: function(close){
+        if($('#helpScreen').is(':visible')) {
+            if(!close)
+                $('#help').animate({left: '+=130', bottom: '+=130'}, 700, 'easeInOutQuint');
+            $('#valid').animate({right: '+=130', bottom: '+=130'}, 700, 'easeInOutQuint');
+            $('#helpScreen').fadeOut();
+        } else {
+            $('#help').animate({left: '-=130', bottom: '-=130'}, 700, 'easeInOutQuint');
+            $('#valid').animate({right: '-=130', bottom: '-=130'}, 700, 'easeInOutQuint');
+            $('#helpScreen').fadeIn();
+        }
+
+    },
+
+    /**
+     * Manage enigma closure
+     * @param nbTry
+     */
     enigmaEnd: function(nbTry){
         $('#endEnigma').remove();
         var self=this;
@@ -452,7 +504,7 @@ var core = {
                     $('#cache img').imagesLoaded(function(){
                         var finish = new Date();
                         if (finish - now < 4000) {
-                            _.delay(function(){self.launch();}, 4000 - finish + now);
+                            _.delay(function(){self.launch();}, 4000 - (finish - now));
                         } else {
                             self.launch();
                         }
@@ -467,22 +519,29 @@ var core = {
 
     },
 
+    /**
+     * launch episode when ready
+     */
     launch: function(){
         var self=this;
         self.hideLoadScreen(function(){self.loadNextScreen()});
     },
 
-
+    /**
+     * Load next episode requested
+     */
     loadNextEpisode: function(){
         var episodeIndex = $.jStorage.get('episodeIndex');
         var episodeList = $.jStorage.get('episodeList');
 
         episodeIndex++;
         $.jStorage.set('episodeIndex', episodeIndex);
-        $.jStorage.set('screenNum', 0);
-        if(typeof episodeList[episodeIndex] == 'undefined'){
+        this.screenNum = 0;
+        $.jStorage.set('screenNum', this.screenNum);
+
+        if(typeof episodeList[episodeIndex] != 'undefined')
             window.location.href = episodeList[episodeIndex]+'.html';
-        } else
+        else
             window.location.href = 'index.html';
     },
 
@@ -538,8 +597,5 @@ var core = {
 
         $('<img>').attr('src', 'resources/background/'+screen.background).appendTo($cache);
 
-
-
     }
-
 }

@@ -10,7 +10,6 @@ var associateCardNumber = 0,
         /* Container is mandatory */
         container: null,
 
-
         /* card numbers */
         numbers: [ 1, 2, 3, 4, 5, 6 ],
 
@@ -30,11 +29,26 @@ var associateCardNumber = 0,
             $('<div>').attr('id', 'label').appendTo(this.container);
             $('<div>').attr('id', 'target').appendTo(this.container);
 
-            this.bind(screen);
+            this.construct(screen);
         },
 
+        /**
+         * Clean Enigma
+         */
         clean: function(){
             this.container.html('');
+        },
+
+        /**
+         * Remove useless cards
+         */
+        help: function(){
+            nbTry++;
+            for (var i=0; i<6; i++ ) {
+                if($('#stack div').eq(i).data('number')>3){
+                    $('#stack div').eq(i).css('visibility', 'hidden');
+                }
+            }
         },
 
         /**
@@ -89,9 +103,9 @@ var associateCardNumber = 0,
         },
 
         /**
-         * Bind Enigma
+         * Construct Enigma
          */
-        bind: function(screen){
+        construct: function(screen){
             var self=this;
             self.numbers = _.shuffle(self.numbers);
             for (var i=0; i<6; i++ ) {
@@ -123,7 +137,6 @@ var associateCardNumber = 0,
 
             $('#label div, #stack div').css('background-image', 'url("resources/enigma/'+screen.assets.stack+'")');
 
-            self.checkResponse();
         },
 
         /**
@@ -131,24 +144,29 @@ var associateCardNumber = 0,
          */
         checkResponse: function(){
             var self=this;
-            $('#valid').click(function(e){
 
-                e.preventDefault();
-                if($('#target div.ui-droppable-disabled').length < $('#target div').length)
-                    self.answer();
-                else if(associateCardNumber == $('#target div').length) {
-                    nbTry++;
-                    self.success();
-                } else {
-                    self.fail();
-                }
+            if($('#target div.ui-droppable-disabled').length < $('#target div').length)
+                self.answer();
+            else if(associateCardNumber == $('#target div').length) {
+                nbTry++;
+                self.success();
+            } else {
+                self.fail();
+            }
 
-            });
+
         },
 
+        /**
+         * When response is correct
+         */
         success: function(){
             $.jStorage.publish("enigmaResolve", nbTry);
         },
+
+        /**
+         * When response is incorrect
+         */
         fail: function(){
             var self=this;
             self.resetStack();
@@ -158,8 +176,13 @@ var associateCardNumber = 0,
                 $(this).remove();
             });
         },
+
+        /**
+         * When response is missing
+         */
         answer: function(){
             var self=this;
+            $('div.legend', self.container).remove();
             var failureMessage = $('<div>').addClass('legend').html('Fais glisser les propositions');
             failureMessage.css({bottom: '60px'});
             failureMessage.appendTo(self.container).addClass('shake').delay(4000).fadeOut('slow', function(){
