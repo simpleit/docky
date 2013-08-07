@@ -1,7 +1,7 @@
 {
     "title": "Docky is Back",
-    "chapterTitle": "Le sentier perdu",
-    "chapterNumber": "Episode 2",
+    "episodeTitle": "Le sentier perdu",
+    "episodeNumber": "Episode 2",
     "screens" : [
         {
             "id": "screen1",

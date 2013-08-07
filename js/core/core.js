@@ -13,6 +13,7 @@ var core = {
     activeScreen: null,
     lastScreenType: null,
 
+    story: '',
     episode: '',
     loadedStyles: new Array(),
     loadedScripts: new Array(),
@@ -26,7 +27,9 @@ var core = {
 
             $('#macaron').animate({top: '60px'}, 700, 'easeInOutBack', function(){
                 $.getJSON("resources/story/story.json", function(episodeData){
-                    $.jStorage.set('episodeList', episodeData.episodes);
+                    self.story = episodeData.name;
+                    $.jStorage.set('story', self.story);
+                    $.jStorage.set(self.story+'.episodeList', episodeData.episodes);
                     $('#start').animate({right: '+=160', bottom: '+=160'}, 700, 'easeInOutBack', function(){
                         $('#options').animate({left: '+=160', bottom: '+=160'}, 700, 'easeInOutBack');
                     });
@@ -34,8 +37,8 @@ var core = {
                     // CLICK ON START
                     $('#start').click(function(){
 
-                        var episodeIndex = $.jStorage.get('episodeIndex') || 0;
-                        $.jStorage.set('episodeIndex', episodeIndex);
+                        var episodeIndex = $.jStorage.get(self.story+'.episodeIndex') || 0;
+                        $.jStorage.set(self.story+'.episodeIndex', episodeIndex);
                         if(typeof episodeData.episodes[episodeIndex] == 'undefined')
                         {
                             alert('GAME OVER');
@@ -362,7 +365,7 @@ var core = {
 
 
             var num = _.max([40 - (nbTry*10), 10]);
-            var score = $.jStorage.get('playerScore') || 0;
+            var score = $.jStorage.get(self.story+'.playerScore') || 0;
             $('<span>').html(score).appendTo($enigmaEnd);
             $('<div>').html('+'+num).appendTo($enigmaEnd);
 
@@ -382,7 +385,7 @@ var core = {
                 }
 
                 _.delay(function(){
-                    $.jStorage.set('playerScore', score);
+                    $.jStorage.set(self.story+'.playerScore', score);
                     $('div', $enigmaEnd).fadeOut();
                 }, i*130);
 
@@ -402,11 +405,12 @@ var core = {
      * Load next episode Screen
      */
     loadNextScreen: function(){
-        this.activeScreen = this.episode.screens[this.screenNum];
-        this.loadScreen(this.activeScreen);
+        var self=this;
+        self.activeScreen = self.episode.screens[self.screenNum];
+        self.loadScreen(self.activeScreen);
 
-        $.jStorage.set('screenNum', this.screenNum);
-        this.screenNum++;
+        $.jStorage.set(self.story+'.screenNum', self.screenNum);
+        self.screenNum++;
     },
 
     /**
@@ -468,16 +472,21 @@ var core = {
      * Load episode fully
      */
     loadEpisode: function(){
-
+        var self = this;
         /* check user progress */
-        var episodeIndex = $.jStorage.get('episodeIndex');
-        var episodes = $.jStorage.get('episodeList');
+        self.story = $.jStorage.get('story') || '';
+        if(self.story == '')
+            window.location.href= 'index.html';
 
-        this.screenNum = $.jStorage.get('screenNum') || 0;
-        $.jStorage.set('screenNum', this.screenNum);
+        var episodeIndex = $.jStorage.get(self.story+'.episodeIndex');
+        var episodes = $.jStorage.get(self.story+'.episodeList');
+
+
+        this.screenNum = $.jStorage.get(self.story+'.screenNum') || 0;
+        $.jStorage.set(self.story+'.screenNum', this.screenNum);
 
         // Init Score ??
-        $.jStorage.set('playerScore', 0);
+        $.jStorage.set(self.story+'.playerScore', 0);
         var episodeName = $('meta[name=episode]').attr("content");
 
         if(!_.contains(episodes, episodeName) || episodes[episodeIndex] != episodeName){
@@ -489,7 +498,7 @@ var core = {
 
         $.getJSON("resources/story/"+episodeName+".json", function(episodeJson){
             $('title').html(episodeJson.title);
-            core.showLoadScreen(episodeJson.chapterTitle, episodeJson.chapterNumber);
+            core.showLoadScreen(episodeJson.episodeTitle, episodeJson.episodeNumber);
             self.episode = episodeJson;
 
             _.forEach(self.episode.screens, function(screen){
@@ -531,13 +540,14 @@ var core = {
      * Load next episode requested
      */
     loadNextEpisode: function(){
-        var episodeIndex = $.jStorage.get('episodeIndex');
-        var episodeList = $.jStorage.get('episodeList');
+        var self=this,
+            episodeIndex = $.jStorage.get(self.story+'.episodeIndex'),
+            episodeList = $.jStorage.get(self.story+'.episodeList');
 
         episodeIndex++;
-        $.jStorage.set('episodeIndex', episodeIndex);
+        $.jStorage.set(self.story+'.episodeIndex', episodeIndex);
         this.screenNum = 0;
-        $.jStorage.set('screenNum', this.screenNum);
+        $.jStorage.set(self.story+'.screenNum', this.screenNum);
 
         if(typeof episodeList[episodeIndex] != 'undefined')
             window.location.href = episodeList[episodeIndex]+'.html';
