@@ -163,7 +163,7 @@
 
     body{
         background-color: #000;
-        font-family: "BradyBunchRemastered";
+        font-family: "BubblegumSansRegular", "BradyBunchRemastered";
     }
 
     #window{
@@ -407,7 +407,7 @@
         border-radius: 15px;
         bottom: 10px;
         left: 28%;
-        height: 70px;
+        min-height: 70px;
         opacity: 0.7;
         padding: 15px;
         border: 3px solid black;
@@ -671,4 +671,33 @@
         font-size: 240%;
     }
 
+    #finalScore{
+        position: absolute;
+        left: -400px;
+        top: 300px;
+        color: #808080;
+        font-size: 150%;
+        background: url('../../ui/nut.png') no-repeat right 0;
+        background-size: 55px;
+        padding: 10px 60px 13px 0;
+        -webkit-animation: spaceboots2 1s linear infinite;
+        -moz-animation:  spaceboots2 1s linear infinite;
+    }
+    #finalScore span{
+        color: #FFF;
+        font-size: 160%;
+    }
+    #finalScore img{
+        margin-bottom: 40px;
+        margin-left: 8px;
+        width: 60px;
+    }
+    #blackout div.ender{
+        background: url('../../ui/docky.png');
+        position: absolute;
+        right: 80px;
+        width: 260px;
+        height: 276px;
+        top: 120px;
+    }
 }

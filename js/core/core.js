@@ -11,6 +11,7 @@ var core = {
 
     screenNum: 0,
     activeScreen: null,
+    activeEnigma: 0,
     lastScreenType: null,
 
     story: '',
@@ -107,14 +108,10 @@ var core = {
 
     /**
      * Show load screen
-     *
-     * @param title    The chapter title
-     * @param subtitle The chapter subtitle
-     * @param callback callback function
      */
-    showLoadScreen: function(title, subtitle, callback){
-        core.loadingScreen = true;
-        callback = null || callback;
+    showLoadScreen: function(){
+        var self=this;
+        self.loadingScreen = true;
 
         if($('#blackout div.foot').length<10) {
             for (var i=0;i<11;i++)
@@ -127,19 +124,33 @@ var core = {
         }
 
         setTimeout(function(){
-            if(callback != null)
-                callback();
             //soundObject.setAttribute('src', 'media/loading_screen.ogg');
             //soundObject.play();
-            core.footprints();
+            self.footprints();
             var chapter = $('#blackout div.chapter');
-            $('h3', chapter).html(title);
-            $('span', chapter).eq(0).html(subtitle).css('opacity', 1);
+            $('h3', chapter).html(self.episode.episodeTitle);
+            $('span', chapter).eq(0).html(self.episode.episodeNumber).css('opacity', 1);
             chapter.css('top', '-40px');
             chapter.animate({top: '250px'}, 1700, 'easeOutBack', function(){
                 $('span:last-child', chapter).addClass('blink');
             });
         }, 500);
+    },
+
+    showEndingScreen: function(){
+        var self=this;
+        var chapter = $('#blackout div.chapter'),
+            score = $.jStorage.get(self.story+'.playerScore');
+        $('h3', chapter).html(self.episode.episodeNumber+' terminé');
+        $('span', chapter).eq(0).html(self.episode.episodeTitle);
+        chapter.css({width: 'auto', left: '-=2000', top: '-140px'});
+
+        var finalScore = $('<div>').attr('id', 'finalScore').html('Tu repars avec <span>'+score+'</span>');
+        chapter.animate({top: '150px'}, 1700, 'easeOutBack', function(){
+            finalScore.appendTo('#blackout').animate({left: '200px'}, 1700, 'easeInOutCirc');
+        });
+        $('<div>').addClass('ender').appendTo('#blackout');
+
     },
 
     /**
@@ -253,10 +264,22 @@ var core = {
      * @param callback Callback function
      */
     enigmaIntro: function(callback){
+        var self=this;
         $('#introEnigma').slideDown();
-        $('#introEnigma').append('<h1>Enigme 1</h1>');
 
-        //show question marks
+        /* Compute enigma Index */
+        var enigmeIndex = 0;
+        for (var i=0; i<self.episode.screens.length;i++) {
+            if(self.episode.screens[i].type == 'enigma')
+                enigmeIndex++;
+            if(self.episode.screens[i] == self.activeScreen)
+                break;
+        }
+        self.activeEnigma = enigmeIndex;
+
+        $('#introEnigma').append('<h1>Enigme '+self.activeEnigma+'</h1>');
+
+        /* show question marks */
         var delay = 800;
         $('#introEnigma span').each(function(key){
             var deg = _.random(0, 360);
@@ -277,7 +300,7 @@ var core = {
         var $enigma = $('<div>').attr('id', 'enigma').appendTo($('#window'));
 
         /* Prepare enigma screen */
-        $('<div>').attr('class', 'breadcrumb').html('Enigme 1').appendTo($enigma);
+        $('<div>').attr('class', 'breadcrumb').html('Enigme '+self.activeEnigma).appendTo($enigma);
         $('<div>').attr('class', 'legend').html(self.activeScreen.legend).appendTo($enigma);
 
         eval("var activeEngine = " + self.activeScreen.engine);
@@ -357,7 +380,7 @@ var core = {
         var self=this;
         var $enigmaEnd = $('<div>').attr('id', 'endEnigma').appendTo($('#window'));
         $('<h1>').html('Bravo !').appendTo($enigmaEnd);
-        $('<h2>').html('Enigme 1').appendTo($enigmaEnd);
+        $('<h2>').html('Enigme '+self.activeEnigma).appendTo($enigmaEnd);
 
         $enigmaEnd.fadeIn('slow', function(){
             self.activeEngine.clean();
@@ -498,8 +521,10 @@ var core = {
 
         $.getJSON("resources/story/"+episodeName+".json", function(episodeJson){
             $('title').html(episodeJson.title);
-            core.showLoadScreen(episodeJson.episodeTitle, episodeJson.episodeNumber);
             self.episode = episodeJson;
+
+
+            self.showLoadScreen();
 
             _.forEach(self.episode.screens, function(screen){
                 if(screen.type == 'enigma') {
@@ -533,6 +558,7 @@ var core = {
      */
     launch: function(){
         var self=this;
+        //self.hideLoadScreen(function(){self.showEndingScreen()});
         self.hideLoadScreen(function(){self.loadNextScreen()});
     },
 
@@ -549,10 +575,16 @@ var core = {
         this.screenNum = 0;
         $.jStorage.set(self.story+'.screenNum', this.screenNum);
 
-        if(typeof episodeList[episodeIndex] != 'undefined')
-            window.location.href = episodeList[episodeIndex]+'.html';
-        else
-            window.location.href = 'index.html';
+
+        self.showEndingScreen();
+
+        _.delay(function(){
+            if(typeof episodeList[episodeIndex] != 'undefined')
+                window.location.href = episodeList[episodeIndex]+'.html';
+            else
+                window.location.href = 'index.html';
+        }, 7000);
+
     },
 
     /**

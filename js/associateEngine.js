@@ -182,7 +182,7 @@ var associateCardNumber = 0,
          */
         answer: function(){
             var self=this;
-            $('div.legend', self.container).remove();
+            $('div.legend', self.container).eq(1).remove();
             var failureMessage = $('<div>').addClass('legend').html('Fais glisser les propositions');
             failureMessage.css({bottom: '60px'});
             failureMessage.appendTo(self.container).addClass('shake').delay(4000).fadeOut('slow', function(){
