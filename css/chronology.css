@@ -1,0 +1,114 @@
+@-webkit-keyframes associateShake{
+    0% { -webkit-transform: translate(5px, 0); }
+    50% { -webkit-transform: translate(-5px, 0); }
+    100% { -webkit-transform: translate(0, 0); }
+}
+
+@-moz-keyframes associateShake{
+    0% { -moz-transform: translate(5px, 0); }
+    50% { -moz-transform: translate(-5px, 0); }
+    100% { -moz-transform: translate(0, 0); }
+}
+
+@keyframes associateShake{
+    0% { transform: translate(5px, 0); }
+    50% { transform: translate(-5px, 0); }
+    100% { transform: translate(0, 0); }
+}
+
+#chronologyLine{
+    position: absolute;
+    width: 700px;
+    height: 2px;
+    left: 140px;
+    top: 250px;
+    background-color: #FFF;
+}
+
+#chronologyLine span{
+    padding: 17px 42px 34px 10px;
+    width: 0px;
+    height: 0px;
+    border-radius: 50px;
+    background-color: #FFF;
+    text-align: center;
+    margin-top: -24px;
+    display: inline-block;
+
+}
+#chronologyLine span:last-child{
+    float: right;
+}
+
+div.chronologyBubble{
+    position: absolute;
+    top: 120px;
+    left: 215px;
+    width: 120px;
+    height: 120px;
+}
+
+div.chronologyBubble a{
+    display: block;
+    width: 60px;
+    height: 60px;
+    background: url('../ui/play.png') no-repeat left 2px;
+    margin: 0 auto 10px auto;
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    opacity: 0.6;
+}
+
+div.chronologyBubble a:last-child{
+    margin-top: 10px;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+div.chronologyBubble a:hover{
+    opacity: 1;
+}
+
+div.chronologyBubble span{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    padding: 40px;
+    border-radius: 80px;
+    background-color: #FFF;
+    background-position: 0 -3px;
+    background-size: 100% 385%;
+}
+#chronologyBub2{
+    left: 360px;
+}
+#chronologyBub3{
+    left: 505px;
+}
+#chronologyBub4{
+    left: 650px;
+}
+
+
+div.chronology div.shake{
+    animation-name: associateShake;
+    animation-duration: 200ms;
+    animation-iteration-count: 4;
+    animation-timing-function: linear;
+
+    -moz-animation-name: associateShake;
+    -moz-animation-duration: 200ms;
+    -moz-animation-iteration-count: 4;
+    -moz-animation-timing-function: linear;
+
+    -webkit-animation-name: associateShake;
+    -webkit-animation-duration: 200ms;
+    -webkit-animation-iteration-count: 4;
+    -webkit-animation-timing-function: linear;
+}

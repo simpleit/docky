@@ -21,13 +21,13 @@
     background-size: 100% auto;
 }
 
-#stack{
+#associateStack{
     width: 220px;
     padding: 60px 0 0 130px;
     float: left;
 }
 
-#stack div{
+#associateStack div{
     float: left;
     width: 81px;
     height: 81px;
@@ -37,37 +37,37 @@
     display: none;
 }
 
-#stack #card1{
+#associateStack #card1{
     background-position: -183px -92px;
 }
-#stack #card2{
+#associateStack #card2{
     background-position: -183px -185px;
 }
-#stack #card3{
+#associateStack #card3{
     background-position: -183px 2px;
 }
-#stack #card4{
+#associateStack #card4{
     background-position: -89px -91px;
 }
-#stack #card5{
+#associateStack #card5{
     background-position: -89px -184px;
 }
-#stack #card6{
+#associateStack #card6{
     background-position: -89px 3px;
 }
 
-#target, #label{
+#associateTarget, #associateLabel{
     width: 100px;
     float: right;
     margin: 30px 20px 0 0;
 }
 
-#label{
+#associateLabel{
     margin-right: 130px;
 
 }
 
-#target div, #label div{
+#associateTarget div, #associateLabel div{
     float: right;
     width: 90px;
     height: 90px;
@@ -75,18 +75,18 @@
     background: url('../ui/enigma_sheet.png') no-repeat top left;
     display: none;
 }
-#label div{
+#associateLabel div{
     margin-top: 21px;
     background-repeat: no-repeat;
 }
-#label div.label2{
+#associateLabel div.label2{
     background-position: 0 -95px;
 }
-#label div.label3{
+#associateLabel div.label3{
     background-position: 0 -185px;
 }
 
-#target div.hovered{
+#associateTarget div.hovered{
     opacity: 0.7;
 }
 

@@ -5,7 +5,7 @@
     "screens" : [
 
         {
-            "id": "screen3",
+            "id": "screen2",
             "type": "converse",
             "leftCharacter": "docky",
             "rightCharacter": "roger",
@@ -26,12 +26,24 @@
             ]
         },
         {
-            "id": "screen2",
+            "id": "screen3",
+            "type": "enigma",
+            "engine": "chronology",
+            "background": "enigma.png",
+            "stylesheet": "chronology.css",
+            "legend": "Remets les images dans l'ordre",
+            "help": "Veux-tu que je t'aide pour le début ?",
+            "assets" : {
+                "stack": "enigma2.png"
+            }
+        },
+        {
+            "id": "screen4",
             "type": "enigma",
             "engine": "associate",
             "background": "enigma.png",
             "stylesheet": "associate.css",
-            "legend": "Qui mange quoi ?",
+            "legend": "Qui mange quoi",
             "help": "Veux-tu que je supprime les réponses inutiles ?",
             "assets" : {
                 "stack": "enigma1.png"

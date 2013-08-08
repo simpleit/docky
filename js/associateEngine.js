@@ -20,14 +20,14 @@ var associateCardNumber = 0,
             if(this.container == null)
                 return;
 
-            this.container.addClass('associate');
+            this.container.attr('class', 'associate');
             this.container.css('background-image', 'url("resources/background/'+screen.background+'")');
             this.container.show();
             nbTry = 0;
 
-            $('<div>').attr('id', 'stack').appendTo(this.container);
-            $('<div>').attr('id', 'label').appendTo(this.container);
-            $('<div>').attr('id', 'target').appendTo(this.container);
+            $('<div>').attr('id', 'associateStack').appendTo(this.container);
+            $('<div>').attr('id', 'associateLabel').appendTo(this.container);
+            $('<div>').attr('id', 'associateTarget').appendTo(this.container);
 
             this.construct(screen);
         },
@@ -45,8 +45,8 @@ var associateCardNumber = 0,
         help: function(){
             nbTry++;
             for (var i=0; i<6; i++ ) {
-                if($('#stack div').eq(i).data('number')>3){
-                    $('#stack div').eq(i).css('visibility', 'hidden');
+                if($('#associateStack div').eq(i).data('number')>3){
+                    $('#associateStack div').eq(i).css('visibility', 'hidden');
                 }
             }
         },
@@ -65,7 +65,7 @@ var associateCardNumber = 0,
                 ui.helper.animate({top: 0, left: 0});
                 ui.helper.removeClass('dropped');
                 ui.helper.data( 'correct', 'ko' );
-                $('#target div').eq(ui.helper.data('dropped')).droppable( 'enable' );
+                $('#associateTarget div').eq(ui.helper.data('dropped')).droppable( 'enable' );
             }
         },
 
@@ -93,11 +93,11 @@ var associateCardNumber = 0,
          * reset Stask
          */
         resetStack: function(){
-            $('#stack div').each(function(){
+            $('#associateStack div').each(function(){
                if ($(this).data('correct') == 'ko') {
                    $(this).animate({left: 0, top:0}).removeClass('dropped');
                    $(this).draggable( 'option', 'revert', true );
-                   $('#target div').eq($(this).data('dropped')).droppable( 'enable' );
+                   $('#associateTarget div').eq($(this).data('dropped')).droppable( 'enable' );
                }
             });
         },
@@ -112,7 +112,7 @@ var associateCardNumber = 0,
                 $('<div></div>').data( 'correct', 'ko' ).data( 'number', self.numbers[i] )
                     .attr('id', 'card'+ self.numbers[i] ).appendTo( '#stack' ).draggable({
                     containment: self.container,
-                    stack: '#stack div',
+                    stack: '#associateStack div',
                     cursor: 'move',
                     revert: true,
                     stop: self.handleDragStop
@@ -121,21 +121,21 @@ var associateCardNumber = 0,
 
             for (var i=1; i<=3; i++ ) {
                 $('<div></div>').data( 'number', i ).addClass('slot'+i).appendTo( '#target' ).droppable({
-                    accept: '#stack div',
+                    accept: '#associateStack div',
                     hoverClass: 'hovered',
                     drop: self.handleDrop
                 });
                 $('<div></div>').addClass('label'+i).appendTo( '#label' );
             }
 
-            $('#stack div').each(function(i){
+            $('#associateStack div').each(function(i){
                 $(this).delay(i*100).fadeIn();
             });
-            $('#label div, #target div').each(function(i){
+            $('#associateLabel div, #associateTarget div').each(function(i){
                 $(this).delay(i*100).fadeIn();
             });
 
-            $('#label div, #stack div').css('background-image', 'url("resources/enigma/'+screen.assets.stack+'")');
+            $('#associateLabel div, #associateStack div').css('background-image', 'url("resources/enigma/'+screen.assets.stack+'")');
 
         },
 
@@ -145,12 +145,13 @@ var associateCardNumber = 0,
         checkResponse: function(){
             var self=this;
 
-            if($('#target div.ui-droppable-disabled').length < $('#target div').length)
+            if($('#associateTarget div.ui-droppable-disabled').length < $('#associateTarget div').length)
                 self.answer();
-            else if(associateCardNumber == $('#target div').length) {
+            else if(associateCardNumber == $('#associateTarget div').length) {
                 nbTry++;
                 self.success();
             } else {
+                nbTry++;
                 self.fail();
             }
 
@@ -188,7 +189,7 @@ var associateCardNumber = 0,
             failureMessage.appendTo(self.container).addClass('shake').delay(4000).fadeOut('slow', function(){
                 $(this).remove();
             });
-            $('#stack div').each(function(i){
+            $('#associateStack div').each(function(i){
                 if(!$(this).hasClass('dropped'))
                     $(this).delay(i*100).css('opacity', 0).animate({opacity: 1});
             });
