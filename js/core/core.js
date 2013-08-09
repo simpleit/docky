@@ -1,6 +1,20 @@
 /**
- * Open Story
- * @type {{loadingScreen: boolean, activeEngine: null, screenNum: number, activeScreen: null, lastScreenType: null, episode: string, loadedStyles: Array, loadedScripts: Array, welcomeScreen: Function, footprints: Function, showLoadScreen: Function, hideLoadScreen: Function, displayNextLine: Function, loadConverseScreen: Function, enigmaIntro: Function, enigmaStart: Function, loadNextScreen: Function, blackFadeOut: Function, blackFade: Function, loadScreen: Function, selectScreen: Function, loadEpisode: Function, loadStyle: Function, loadScript: Function}}
+ * Core
+ *
+ * This file is part of Docky.
+ *
+ * Docky is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Docky is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Docky. If not, see <http://www.gnu.org/licenses/>
  */
 
 var core = {
