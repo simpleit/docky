@@ -14,7 +14,7 @@
 <nav class="navbar">
 	<ul>
 	<li class="first"><a href="#" title="Vous êtes en plein dedans !" class="tooltip-bottom"><span>doc</span>umentation</a></li>
-	<li><a href="../stories/docky" target="_blank" title="Le mieux c'est de passer à l'action" class="tooltip-bottom"><span>PROTO</span>type</a></li>
+	<li><a href="../stories/docky" target="_blank" title="Le mieux, c'est de passer à l'action" class="tooltip-bottom"><span>PROTO</span>type</a></li>
 	<li class="last"></li>
 	</ul>
 </nav>
@@ -24,8 +24,8 @@
 
 <div class="callout callout-top clearfix">
     <div class="grid">
-        <h1 class="center"><i class="icon-magic"></i>	Créez des histoires</h1>
-        <h4 style="margin-bottom:40px;" class="center">Et venez contribuer à ce mystérieux projet…</h4>
+        <h1 class="center"><i class="icon-magic"></i> Racontez des histoires</h1>
+        <h4 style="margin-bottom:40px;" class="center">Venez contribuer à ce mystérieux projet…</h4>
 
         <div class="col_12" style="text-align: center;text-shadow: 0px 1px 3px rgba(0,0,0,0.2);">
             <div class="col_3 column">
@@ -213,7 +213,7 @@
                         <li><code>/character</code> contient les personnages, au format png, préparés pour l'animation</li>
                         <li><code>/enigma</code> contient les ressources utiles aux énigmes de l'épisode</li>
                         <li><code>/story</code> contient les fichiers Json structurant l'épisode</li>
-                        <li><code>episodeXX.html</code> donne un point d'entrée pour l'épisode</li>
+                        <li><code>episodeXX.html</code> donne un point d'entrée pour l'épisode (seule la balise meta episode change)</li>
                         <li><code>index.html</code> permet d'accéder au jeu, il est identique d'un jeu à l'autre</li>
                     </ul>
 
@@ -262,6 +262,10 @@
                     Puis il faut créer dans ce même répertoire le fichier json correspondant (episodeXX.json), cf <a href="#json">extrait Json #2</a>. <br />
                     Il reste à décider de l'enchaînement des écrans (conversation ou enigme) et à construire l'épisode !
                 </p>
+
+                <p class="notice">
+                    <i class="icon-info-sign icon-large"></i>Afin de pouvoir tester votre épisode, il est possible de remettre à zéro votre progression en allant sur <code>index.html#reset</code>.
+                </p>
             </div>
 
             <hr />
@@ -289,7 +293,7 @@
 					<li><i class="icon-ok"></i>Ecran d'accueil</li>
 					<li><i class="icon-ok"></i>Ecran de chargement d'épisode</li>
 					<li><i class="icon-ok"></i>Ecran de conversation</li>
-					<li><i class="icon-ok"></i>Ecran choix de trajectoire</li>
+					<li><i class="icon-remove"></i>Ecran choix de trajectoire</li>
 					<li><i class="icon-ok"></i>Ecran de chargement d'énigme</li>
 					<li><i class="icon-ok"></i>Ecran de fin d'épisode</li>
 				</ul>
@@ -299,6 +303,7 @@
 				<ul class="icons">
 					<li><i class="icon-remove"></i>Gestion des options</li>
 					<li><i class="icon-remove"></i>Gestion des scores</li>
+					<li><i class="icon-remove"></i>Attente du prochain épisode</li>
 					<li><i class="icon-remove"></i>Synchronisation des données</li>
 					<li><i class="icon-remove"></i>Local storage</li>
 				</ul>
