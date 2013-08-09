@@ -183,6 +183,10 @@ p.notice{
     color: #1A4C68;
 }
 
+p.notice code{
+    background-color: #FFF;
+}
+
 p a{
     color: #329583;
     font-weight: bold;
