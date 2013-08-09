@@ -110,7 +110,7 @@ var associateCardNumber = 0,
             self.numbers = _.shuffle(self.numbers);
             for (var i=0; i<6; i++ ) {
                 $('<div></div>').data( 'correct', 'ko' ).data( 'number', self.numbers[i] )
-                    .attr('id', 'card'+ self.numbers[i] ).appendTo( '#stack' ).draggable({
+                    .attr('id', 'card'+ self.numbers[i] ).appendTo( '#associateStack' ).draggable({
                     containment: self.container,
                     stack: '#associateStack div',
                     cursor: 'move',
@@ -120,12 +120,12 @@ var associateCardNumber = 0,
             }
 
             for (var i=1; i<=3; i++ ) {
-                $('<div></div>').data( 'number', i ).addClass('slot'+i).appendTo( '#target' ).droppable({
+                $('<div></div>').data( 'number', i ).addClass('slot'+i).appendTo( '#associateTarget' ).droppable({
                     accept: '#associateStack div',
                     hoverClass: 'hovered',
                     drop: self.handleDrop
                 });
-                $('<div></div>').addClass('label'+i).appendTo( '#label' );
+                $('<div></div>').addClass('label'+i).appendTo( '#associateLabel' );
             }
 
             $('#associateStack div').each(function(i){
@@ -154,8 +154,6 @@ var associateCardNumber = 0,
                 nbTry++;
                 self.fail();
             }
-
-
         },
 
         /**

@@ -62,12 +62,13 @@ var nbTry = 0,
          */
         start: function(screen){
             var self=this,
-                numbers = [ 1, 2, 3, 4 ];
+                numbers = [ 1, 2, 3, 4 ],
+                bubbleY = 116;
 
             numbers = _.shuffle(numbers);
 
             $('div.chronologyBubble span').each(function(i){
-                $(this).data('position', numbers[i]).css('background-position', '0 -'+((numbers[i]-1)*114)+'px');
+                $(this).data('position', numbers[i]).css('background-position', '0 -'+((numbers[i]-1)*bubbleY)+'px');
             });
 
             $('div.chronologyBubble a').click(function(e){
@@ -85,14 +86,14 @@ var nbTry = 0,
                     pos--;
                 }
 
-                var posCompute = -(pos-1)*114;
+                var posCompute = -(pos-1)*bubbleY;
                 bubble.animate({'background-position-y': posCompute+'px'}, 300, 'swing', function(){
                     if(pos==0)
                         pos=4;
                     if(pos>4)
                         pos=1;
 
-                    posCompute = -(pos-1)*114;
+                    posCompute = -(pos-1)*bubbleY;
                     bubble.css({'background-position-y': posCompute+'px'});
                     bubble.data('position', pos);
                 });

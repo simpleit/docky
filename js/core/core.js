@@ -137,19 +137,24 @@ var core = {
         }, 500);
     },
 
+    /**
+     * Episode conclusion
+     */
     showEndingScreen: function(){
         var self=this;
-        var chapter = $('#blackout div.chapter'),
+        var $blackout = $('#blackout'),
+            $chapter = $('div.chapter', $blackout),
             score = $.jStorage.get(self.story+'.playerScore');
-        $('h3', chapter).html(self.episode.episodeNumber+' terminé');
-        $('span', chapter).eq(0).html(self.episode.episodeTitle);
-        chapter.css({width: 'auto', left: '-=2000', top: '-140px'});
+        $('h3', $chapter).html(self.episode.episodeNumber+' terminé');
+        $('span', $chapter).eq(0).html(self.episode.episodeTitle);
+        $chapter.css({width: 'auto', left: '-=2000', top: '-140px'});
 
         var finalScore = $('<div>').attr('id', 'finalScore').html('Tu repars avec <span>'+score+'</span>');
-        chapter.animate({top: '150px'}, 1700, 'easeOutBack', function(){
+        $blackout.fadeIn();
+        $chapter.animate({top: '150px'}, 1700, 'easeOutBack', function(){
             finalScore.appendTo('#blackout').animate({left: '200px'}, 1700, 'easeInOutCirc');
         });
-        $('<div>').addClass('ender').appendTo('#blackout');
+        $('<div>').addClass('ender').appendTo($blackout);
 
     },
 
@@ -191,7 +196,7 @@ var core = {
         if(!$('div.bubble').hasClass(this.activeScreen.lines[self.lineNumber].position)){
             $('div.bubble-inner').hide();
             $('img.next').hide();
-            $('div.bubble').fadeOut('3000', function(){
+            $('div.bubble').fadeOut('2000', function(){
                 $('div.bubble').removeClass('right');
                 $('div.bubble').removeClass('left');
                 $('div.bubble').addClass(self.activeScreen.lines[self.lineNumber].position);
@@ -203,7 +208,6 @@ var core = {
         } else {
             $('div.bubble-inner').show();
         }
-
 
         $('#converse div').removeClass('speaking');
 
@@ -219,6 +223,7 @@ var core = {
             self.currentLineNumber = self.lineNumber;
             self.lineNumber++;
         }
+
 
         return true;
     },
@@ -266,6 +271,8 @@ var core = {
     enigmaIntro: function(callback){
         var self=this;
         $('#introEnigma').slideDown();
+        $('#introEnigma h1').remove();
+        $('#introEnigma span').hide();
 
         /* Compute enigma Index */
         var enigmeIndex = 0;
@@ -311,9 +318,7 @@ var core = {
         self.enigmaActions();
         $('#introEnigma').fadeOut();
 
-        $.jStorage.subscribe("enigmaResolve", function(channel, nbTry){
-            self.enigmaEnd(nbTry);
-        });
+
     },
 
     /**
@@ -348,6 +353,7 @@ var core = {
         });
 
         $valid.click(function(e){
+            console.log('VALIDATION');
             e.preventDefault();
             self.activeEngine.checkResponse();
         });
@@ -388,7 +394,7 @@ var core = {
 
 
             var num = _.max([40 - (nbTry*10), 10]);
-            var score = $.jStorage.get(self.story+'.playerScore') || 0;
+            var score = 0 || $.jStorage.get(self.story+'.playerScore');
             $('<span>').html(score).appendTo($enigmaEnd);
             $('<div>').html('+'+num).appendTo($enigmaEnd);
 
@@ -415,6 +421,7 @@ var core = {
                 _.delay(function(){
                     self.blackFade(function(){
                         $enigmaEnd.hide();
+                        console.log('Enigma End - load next screen');
                         self.loadNextScreen();
                     });
 
@@ -560,6 +567,16 @@ var core = {
         var self=this;
         //self.hideLoadScreen(function(){self.showEndingScreen()});
         self.hideLoadScreen(function(){self.loadNextScreen()});
+        $.jStorage.subscribe("enigmaResolve", function(channel, nbTry){
+            self.enigmaEnd(nbTry);
+        });
+    },
+
+    /**
+     * reset stats for manual debug
+     */
+    flush: function(){
+        $.jStorage.flush();
     },
 
     /**
@@ -641,3 +658,11 @@ var core = {
 
     }
 }
+
+
+// DevMODE with reset
+var hash = window.location.href.split('#')[1];
+if (hash == 'reset'){
+    core.flush();
+}
+

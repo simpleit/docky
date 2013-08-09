@@ -33,7 +33,7 @@ var ghostTimer = null;
           //str.push("_");
 
             // increase the delay to ghostType slower
-            var delay = 100;
+            var delay = 40;
             var duration = 0;
 
             $.each(str, function (i, val) {
