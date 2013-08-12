@@ -34,7 +34,23 @@ var core = {
     loadedScripts: new Array(),
 
     /**
-     * Load Welcome Screen
+     * Init welcome Screen
+     */
+    initWelcomeScreen: function(){
+        if(!$('#cache').length){
+            $('<div>').attr('id', 'cache').hide().appendTo('body');
+        }
+        var $cache = $('#cache');
+
+        $('<img>').attr('src', '../../ui/start_screen.png').appendTo($cache);
+        $('#window.welcomeScreen').css('background-image', 'url(../../ui/start_screen.png)');
+        $('#cache img').imagesLoaded(function(){
+            $('#blackout').fadeOut('slow', core.welcomeScreen());
+        });
+    },
+
+    /**
+     * launch Welcome Screen
      */
     welcomeScreen: function(){
         var self = this;
@@ -680,3 +696,19 @@ if (hash == 'reset'){
     core.flush();
 }
 
+
+(function($, self){
+
+    if(!$ || !self) {
+        return;
+    }
+
+    for(var i=0; i<self.properties.length; i++) {
+        var property = self.properties[i],
+            camelCased = StyleFix.camelCase(property),
+            PrefixCamelCased = self.prefixProperty(property, true);
+
+        $.cssProps[camelCased] = PrefixCamelCased;
+    }
+
+})(window.jQuery, window.PrefixFree);

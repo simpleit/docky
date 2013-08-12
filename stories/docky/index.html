@@ -5,6 +5,7 @@
     <title>Docky</title>
     <link rel="stylesheet" type="text/css" href="../../css/core/main.css">
 
+    <script type="text/javascript" src="../../js/core/prefixfree.min.js"></script>
     <script type="text/javascript" src="../../js/core/jquery.min.2.0.3.js"></script>
     <script type="text/javascript" src="../../js/core/jquery-ui.min.1.10.3.js"></script>
     <script type="text/javascript" src="../../js/core/jquery.imagesloaded.min.js"></script>
@@ -30,7 +31,7 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#blackout').fadeOut('slow', core.welcomeScreen());
+        core.initWelcomeScreen();
     });
 </script>
 
