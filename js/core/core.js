@@ -34,7 +34,23 @@ var core = {
     loadedScripts: new Array(),
 
     /**
-     * Load Welcome Screen
+     * Init welcome Screen
+     */
+    initWelcomeScreen: function(){
+        if(!$('#cache').length){
+            $('<div>').attr('id', 'cache').hide().appendTo('body');
+        }
+        var $cache = $('#cache');
+
+        $('<img>').attr('src', '../../ui/start_screen.png').appendTo($cache);
+        $('#window.welcomeScreen').css('background-image', 'url(../../ui/start_screen.png)');
+        $('#cache img').imagesLoaded(function(){
+            $('#blackout').fadeOut('slow', core.welcomeScreen());
+        });
+    },
+
+    /**
+     * launch Welcome Screen
      */
     welcomeScreen: function(){
         var self = this;

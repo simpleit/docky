@@ -113,7 +113,8 @@
     }
 
     #window.welcomeScreen{
-        background: url('../../ui/start_screen.png') no-repeat top left;
+        background-position: top left;
+        background-repeat: no-repeat;
         background-size: 100% 100%;
     }
 
