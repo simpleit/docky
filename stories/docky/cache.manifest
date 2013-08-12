@@ -1,0 +1,10 @@
+CACHE MANIFEST
+ui/macaron.png
+ui/play.png
+ui/gear.png
+ui/start_screen.png
+css/core/main.css
+js/core/jquery.min.2.0.3.js
+js/core/jquery-ui.min.1.10.3.js
+js/core/jquery.imagesloaded.min.js
+js/core/jquery.easing.1.3.js

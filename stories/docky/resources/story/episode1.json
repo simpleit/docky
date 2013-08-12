@@ -1,0 +1,111 @@
+{
+    "title": "Docky is Back",
+    "episodeTitle": "Le village des taupes",
+    "episodeNumber": "Episode 1",
+    "screens" : [
+
+        {
+            "id": "screen1",
+            "type": "converse",
+            "leftCharacter": "docky",
+            "rightCharacter": "roger",
+            "background": "converse.jpg",
+            "lines": [
+                {
+                    "position": "right",
+                    "text": "Bonjour Docky, tu te promènes chez les taupes ?"
+                },
+                {
+                    "position": "left",
+                    "text": "Quelqu'un m'a volé toutes mes noisettes hier soir !"
+                },
+                {
+                    "position": "left",
+                    "text": "Et j'ai retrouvé une plume devant ma porte."
+                },
+                {
+                    "position": "right",
+                    "text": "Le voleur est donc un oiseau, ||||||| ou une poule !"
+                },
+                {
+                    "position": "right",
+                    "text": "Mais si tu veux enquêter chez les poules, il va falloir réviser tes connaissances..."
+                }
+            ]
+        },
+        {
+            "id": "screen2",
+            "type": "enigma",
+            "engine": "chronology",
+            "background": "enigma.png",
+            "stylesheet": "chronology.css",
+            "legend": "Remets les images dans l'ordre",
+            "help": "Veux-tu que je t'aide pour le début ?",
+            "assets" : {
+                "stack": "enigma2.png"
+            }
+        },
+        {
+            "id": "screen3",
+            "type": "converse",
+            "leftCharacter": "docky",
+            "rightCharacter": "roger",
+            "background": "converse.jpg",
+            "lines": [
+                {
+                    "position": "right",
+                    "text": "Apparemment tu t'y connais en poule."
+                },
+                {
+                    "position": "right",
+                    "text": "Par contre, pour entrer dans le poulailler, il faudra que tu apportes un truc à manger."
+                },
+                {
+                    "position": "left",
+                    "text": "Moi j'adore les noisettes, mais les poules mangent des vers de terre, non ?"
+                },
+                {
+                    "position": "right",
+                    "text": "Chaque animal mange un truc un peu bizarre, voici un exemple..."
+                }
+            ]
+        },
+        {
+            "id": "screen4",
+            "type": "enigma",
+            "engine": "associate",
+            "background": "enigma.png",
+            "stylesheet": "associate.css",
+            "legend": "Qui mange quoi",
+            "help": "Veux-tu que je supprime les réponses inutiles ?",
+            "assets" : {
+                "stack": "enigma1.png"
+            }
+        },
+        {
+            "id": "screen5",
+            "type": "converse",
+            "leftCharacter": "docky",
+            "rightCharacter": "roger",
+            "background": "converse.jpg",
+            "lines": [
+                {
+                    "position": "right",
+                    "text": "Mais tu sais beaucoup de choses !!"
+                },
+                {
+                    "position": "right",
+                    "text": "Tu devrais aller voir Maurice à l'entrée de notre village."
+                },
+                {
+                    "position": "right",
+                    "text": "Il pourra sûrement te donner des indices !"
+                },
+                {
+                    "position": "left",
+                    "text": "Merci, je repasserai te voir très bientôt…"
+                }
+            ]
+        }
+    ]
+}
