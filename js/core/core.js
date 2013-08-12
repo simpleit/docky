@@ -17,6 +17,41 @@
  * along with Docky. If not, see <http://www.gnu.org/licenses/>
  */
 
+var audioPlayer = {
+
+    player: null,
+
+    init: function(){
+        this.player = new Audio();
+        this.player.loop = true;
+
+        return this.player;
+    },
+
+    startScreen: function(){
+        var player = this.player || this.init();
+
+        player.setAttribute('src', '../../media/start_screen.ogg');
+        player.play();
+    },
+
+    loading: function(){
+        var player = this.player || this.init();
+
+        player.setAttribute('src', '../../media/loading_screen.ogg');
+        player.play();
+    },
+
+    converse: function(){
+        var player = this.player || this.init();
+
+        player.setAttribute('src', '../../media/converse.ogg');
+        player.play();
+    }
+
+
+};
+
 var core = {
 
     /* core Variables */
@@ -37,6 +72,9 @@ var core = {
      * Init welcome Screen
      */
     initWelcomeScreen: function(){
+
+        audioPlayer.startScreen();
+
         if(!$('#cache').length){
             $('<div>').attr('id', 'cache').hide().appendTo('body');
         }
@@ -142,7 +180,7 @@ var core = {
     showLoadScreen: function(){
         var self=this;
         self.loadingScreen = true;
-
+        audioPlayer.loading();
         if($('#blackout div.foot').length<10) {
             for (var i=0;i<11;i++)
             {
@@ -574,8 +612,8 @@ var core = {
                     var now = new Date();
                     $('#cache img').imagesLoaded(function(){
                         var finish = new Date();
-                        if (finish - now < 4000) {
-                            _.delay(function(){self.launch();}, 4000 - (finish - now));
+                        if (finish - now < 10000) {
+                            _.delay(function(){self.launch();}, 10000 - (finish - now));
                         } else {
                             self.launch();
                         }
@@ -597,6 +635,7 @@ var core = {
         var self=this;
         //self.hideLoadScreen(function(){self.showEndingScreen()});
         self.hideLoadScreen(function(){self.loadNextScreen()});
+        audioPlayer.converse();
         $.jStorage.subscribe("enigmaResolve", function(channel, nbTry){
             self.enigmaEnd(nbTry);
         });
