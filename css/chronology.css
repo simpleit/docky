@@ -1,0 +1,84 @@
+@keyframes associateShake{
+    0% { transform: translate(5px, 0); }
+    50% { transform: translate(-5px, 0); }
+    100% { transform: translate(0, 0); }
+}
+
+#chronologyLine{
+    position: absolute;
+    width: 700px;
+    height: 2px;
+    left: 140px;
+    top: 250px;
+    background-color: #FFF;
+}
+
+#chronologyLine span{
+    padding: 17px 42px 34px 10px;
+    width: 0px;
+    height: 0px;
+    border-radius: 50px;
+    background-color: #FFF;
+    text-align: center;
+    margin-top: -24px;
+    display: inline-block;
+
+}
+#chronologyLine span:last-child{
+    float: right;
+}
+
+div.chronologyBubble{
+    position: absolute;
+    top: 120px;
+    left: 215px;
+    width: 120px;
+    height: 120px;
+}
+
+div.chronologyBubble a{
+    display: block;
+    width: 60px;
+    height: 60px;
+    background: url('../ui/play.png') no-repeat left 2px;
+    margin: 0 auto 10px auto;
+    transform: rotate(-90deg);
+    opacity: 0.6;
+}
+
+div.chronologyBubble a:last-child{
+    margin-top: 10px;
+    transform: rotate(90deg);
+}
+
+div.chronologyBubble a:hover{
+    opacity: 1;
+}
+
+div.chronologyBubble span{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    padding: 40px;
+    border-radius: 80px;
+    background-color: #FFF;
+    background-position: 0 -3px;
+    background-size: 100% 385%;
+}
+#chronologyBub2{
+    left: 360px;
+}
+#chronologyBub3{
+    left: 505px;
+}
+#chronologyBub4{
+    left: 650px;
+}
+
+
+div.chronology div.shake{
+    animation-name: associateShake;
+    animation-duration: 200ms;
+    animation-iteration-count: 4;
+    animation-timing-function: linear;
+}
