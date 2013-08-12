@@ -101,16 +101,37 @@ var nbTry = 0,
                 }
 
                 var posCompute = -(pos-1)*bubbleY;
-                bubble.animate({'background-position-y': posCompute+'px'}, 300, 'swing', function(){
+
+//                bubble.animate({backgroundPositionY: posCompute+'px'}, 300, 'swing', function(){
+//                    if(pos==0)
+//                        pos=4;
+//                    if(pos>4)
+//                        pos=1;
+//
+//                    posCompute = -(pos-1)*bubbleY;
+//                    bubble.css({backgroundPositionY: posCompute+'px'});
+//                    bubble.data('position', pos);
+//                });
+
+                bubble.css({
+                    'background-position': '0px '+posCompute+'px',
+                    '-moz-transition': 'all 300ms ease',
+                    'transition': 'all 300ms ease'
+                });
+                _.delay(function(){
                     if(pos==0)
                         pos=4;
                     if(pos>4)
                         pos=1;
 
                     posCompute = -(pos-1)*bubbleY;
-                    bubble.css({'background-position-y': posCompute+'px'});
+                    bubble.css({
+                        'background-position': '0px '+posCompute+'px',
+                        '-moz-transition': 'none',
+                        'transition': 'none'
+                    });
                     bubble.data('position', pos);
-                });
+                }, 301);
 
             });
             $('div.chronologyBubble span').css('background-image', 'url("resources/enigma/'+screen.assets.stack+'")');

@@ -1,15 +1,3 @@
-@-webkit-keyframes associateShake{
-    0% { -webkit-transform: translate(5px, 0); }
-    50% { -webkit-transform: translate(-5px, 0); }
-    100% { -webkit-transform: translate(0, 0); }
-}
-
-@-moz-keyframes associateShake{
-    0% { -moz-transform: translate(5px, 0); }
-    50% { -moz-transform: translate(-5px, 0); }
-    100% { -moz-transform: translate(0, 0); }
-}
-
 @keyframes associateShake{
     0% { transform: translate(5px, 0); }
     50% { transform: translate(-5px, 0); }
@@ -54,20 +42,12 @@ div.chronologyBubble a{
     height: 60px;
     background: url('../ui/play.png') no-repeat left 2px;
     margin: 0 auto 10px auto;
-    -webkit-transform: rotate(-90deg);
-    -moz-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg);
-    -o-transform: rotate(-90deg);
     transform: rotate(-90deg);
     opacity: 0.6;
 }
 
 div.chronologyBubble a:last-child{
     margin-top: 10px;
-    -webkit-transform: rotate(90deg);
-    -moz-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
     transform: rotate(90deg);
 }
 
@@ -101,14 +81,4 @@ div.chronology div.shake{
     animation-duration: 200ms;
     animation-iteration-count: 4;
     animation-timing-function: linear;
-
-    -moz-animation-name: associateShake;
-    -moz-animation-duration: 200ms;
-    -moz-animation-iteration-count: 4;
-    -moz-animation-timing-function: linear;
-
-    -webkit-animation-name: associateShake;
-    -webkit-animation-duration: 200ms;
-    -webkit-animation-iteration-count: 4;
-    -webkit-animation-timing-function: linear;
 }
