@@ -1,0 +1,600 @@
+/* portrait */
+@media screen and (orientation:portrait) {
+    #orientation{
+
+    }
+
+    #window{display: none}
+}
+
+
+
+
+
+/* landscape */
+@media screen and (orientation:landscape) {
+
+
+    /***************
+    FONTS
+    ***************/
+    @font-face {
+        font-family: 'BubblegumSansRegular';
+        src: url('../../fonts/BubblegumSans-Regular-webfont.eot');
+        src: url('../../fonts/BubblegumSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../../fonts/BubblegumSans-Regular-webfont.woff') format('woff'),
+        url('../../fonts/BubblegumSans-Regular-webfont.ttf') format('truetype'),
+        url('../../fonts/BubblegumSans-Regular-webfont.svg#BubblegumSansRegular') format('svg');
+    }
+
+    @font-face {
+        font-family: 'boogalooregular';
+        src: url('../../fonts/Boogaloo-Regular-webfont.eot');
+        src: url('../../fonts/Boogaloo-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../../fonts/Boogaloo-Regular-webfont.woff') format('woff'),
+        url('../../fonts/Boogaloo-Regular-webfont.ttf') format('truetype'),
+        url('../../fonts/Boogaloo-Regular-webfont.svg#boogalooregular') format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: "BradyBunchRemastered";
+        src: url('../../fonts/BradBunR.eot');
+        src: url("../../fonts/BradBunR.eot?") format("eot"),
+        url("../../fonts/BradBunR.woff") format("woff"),
+        url("../../fonts/BradBunR.ttf") format("truetype"),
+        url("../../fonts/BradBunR.svg#BradyBunchRemastered") format("svg");
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    /***************
+    ANIMATIONS
+    ***************/
+    @keyframes spaceboots {
+        0% { transform: translate(0px, 0px) ; }
+        30% { transform: translate(8px, 0px) ; }
+        60% { transform: translate(0px, 0px) ; }
+        70% { transform: translate(4px, 0px) ; }
+        80% { transform: translate(8px, 0px) ; }
+        90% { transform: translate(4px, 0px) ; }
+        100% { transform: translate(0px, 0px) ; }
+    }
+
+    @keyframes spaceboots2{
+        0% { background-position-y: 0px;}
+        50% { background-position-y: -10px;}
+        100% { background-position-y: 0px;}
+    }
+
+
+
+    @keyframes nextButton{
+        0% { margin-right: 0px;}
+        50% { margin-right: -10px;}
+        100% { margin-right: 0px;}
+    }
+
+
+    @keyframes rotate {
+        from {transform:rotate(0deg);}
+        to {  transform:rotate(360deg);}
+    }
+
+
+    @keyframes softBlink {
+        from {opacity: 0}
+        to {  opacity: 1}
+    }
+
+    @keyframes speaking {
+        from { background-position: 0 0; }
+        to { background-position: 0 -1800px; }
+    }
+
+
+
+    /***************
+    GENERIC
+    ***************/
+
+    body{
+        background-color: #000;
+        font-family: "BubblegumSansRegular", "BradyBunchRemastered";
+    }
+
+    #window{
+        width: 990px;
+        height: 557px;
+        margin: 30px auto;
+        position:relative;
+        overflow: hidden;
+    }
+
+    #window.welcomeScreen{
+        background-position: top left;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+
+    #blackout{
+        width:100%;
+        height:100%;
+        background-color: #000;
+        position: absolute;
+    }
+
+    #start, #options{
+        width: 0px;
+        height: 0px;
+        position: absolute;
+        border-radius: 160px;
+        background-color: rgba(0,0,0,0.7);
+        bottom: -320px;
+        padding: 160px;
+    }
+    #start{
+        right: -320px;
+        cursor: pointer;
+    }
+
+    #start a{
+        width: 48px;
+        height:56px;
+        background: url('../../ui/play.png');
+        position: absolute;
+        top: 67px;
+        left: 85px;
+        animation-name: spaceboots;
+        animation-duration:1s;
+        animation-iteration-count:infinite;
+        animation-timing-function:linear;
+    }
+    #options{
+        left: -320px;
+    }
+
+    #options a{
+        cursor: pointer;
+        width: 60px;
+        height:60px;
+        background: url('../../ui/gear.png');
+        position: absolute;
+        top: 60px;
+        left: 198px;
+        animation-name: rotate;
+        animation-duration:15s;
+        animation-iteration-count:infinite;
+        animation-timing-function:linear;
+    }
+
+    #optionsForm{
+        background: rgba(0,0,0,0.7);
+        width: 50%;
+        height: 80%;
+        color: #FFF;
+        border-radius: 50px;
+        padding: 20px;
+        left: -100%;
+        top: 5%;
+        position: absolute;
+        transition: all 700ms;
+        transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        font-size: 150%;
+    }
+
+    #optionsForm h3{
+        font-size: 180%;
+        padding: 0;
+        margin: 0;
+    }
+
+    #optionsForm.open{
+        left: 3%;
+    }
+
+    #macaron{
+        width: 294px;
+        height: 278px;
+        position: absolute;
+        background: url('../../ui/macaron.png') no-repeat left top;
+        left: 348px;
+        top: -280px;
+    }
+
+
+
+    #cache{
+        display: none;
+    }
+
+    #blackout div.chapter{
+        color: #FFF;
+        font-size: 200%;
+        position: absolute;
+        left: 200px;
+        top: -40px;
+
+    }
+    #blackout div.chapter h3{
+        margin: 0;
+        padding: 0;
+    }
+    #blackout div.chapter span{
+        color:#808080;
+        font-size: 60%;
+        opacity: 0;
+    }
+    #blackout div.chapter span.blink:last-child{
+        color:#b0b0b0;
+        float:right;
+        animation-name: softBlink;
+        animation-duration:0.7s;
+        animation-iteration-count:infinite;
+        animation-direction:alternate;
+        animation-timing-function:linear;
+
+        font-family: 'Calibri', Arial;
+        font-size: 50%;
+    }
+
+    #blackout div.foot{
+        background: url('../../ui/footprint.png');
+        width:37px;
+        height: 46px;
+        right: 320px;
+        position: absolute;
+        display: none;
+    }
+
+    #blackout div.flip{
+        right: 280px;
+        transform: scaleX(-1); /* standard */
+        filter: FlipH; /* IE 6/7/8 */
+    }
+
+
+    /***************
+    CHARACTERS
+    ***************/
+    #converse{
+        width: 990px;
+        height: 557px;
+        background-repeat: no-repeat;
+        background-size: 101% auto;
+        position:absolute;
+        overflow: hidden;
+        display: none;
+    }
+
+    #converse div.leftCharacter, #converse div.rightCharacter{
+        width: 260px;
+        height: 300px;
+        position: absolute;
+        bottom: -13px;
+        background-repeat: no-repeat;
+        background-position: -260px 0;
+
+    }
+    #converse div.rightCharacter{
+        right: -300px;
+    }
+
+    #converse div.leftCharacter.speaking, #converse div.rightCharacter.speaking{
+        animation: speaking .6s steps(3) infinite;
+    }
+
+    #converse div.leftCharacter{
+        left: -300px;
+        transform: scaleX(-1); /* standard */
+        filter: FlipH; /* IE 6/7/8 */
+    }
+
+
+
+
+    /***************
+    BUBBLE
+    ***************/
+    .bubble {
+        position: absolute;
+        font-size: 18px;
+        font-family: Calibri, Tahoma, sans-serif;
+        background: black;
+        color: white;
+        width: 40%;
+        float: left;
+        border-radius: 15px;
+        bottom: 10px;
+        left: 28%;
+        min-height: 70px;
+        opacity: 0.7;
+        padding: 15px;
+        border: 3px solid black;
+        display: none;
+    }
+
+    .top{
+        margin-top:  -3px;
+    }
+
+    .right{
+        margin-left:  3px;
+    }
+
+    .bottom {
+        margin-top:   3px;
+    }
+
+    .left{
+        margin-left: -3px;
+    }
+
+    .bubble-inner {
+        padding: 8px;
+        text-align: center;
+        text-decoration: none;
+        display:none;
+    }
+
+    .bubble img.next{
+        width:15px;
+        position:absolute;
+        bottom:15px;
+        right:15px;
+        display: none;
+        cursor: pointer;
+        animation:  nextButton 1s linear infinite;
+    }
+
+    .bubble-arrow {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-style: solid;
+    }
+
+    .top .bubble-arrow {
+        border-top-color: black;
+        border-width: 20px 51px 0 0;
+        bottom: -20px;
+        left: 10%;
+        margin-left: -10px;
+    }
+    .left .bubble-arrow {
+        border-right-color: black;
+        border-width: 0 48px 29px 0;
+        left: -48px;
+        margin-top: -32px;
+        top: 60%;
+    }
+    .right .bubble-arrow {
+        top: 60%;
+        right: -48px;
+        margin-top: -32px;
+        border-width: 0 0 29px 48px;
+        border-left-color: black;
+    }
+    .bottom .bubble-arrow {
+        top: -15px;
+        left: 50%;
+        margin-left: -15px;
+        border-width: 0 15px 15px;
+        border-bottom-color: black;
+    }
+
+    /***************
+    ENIGMA
+    ***************/
+    #introEnigma{
+        position: absolute;
+        color: white;
+        width:100%;
+        height:100%;
+        background-color: #000;
+        display: none;
+        z-index: 20;
+    }
+    #introEnigma>div{
+        position:relative;
+    }
+    #introEnigma span{
+        position: absolute;
+        display: none;
+    }
+    #introEnigma h1{
+        font-size: 80px;
+        padding-top: 200px;
+        text-align: center;
+    }
+
+    #enigma{
+        width: 990px;
+        height: 557px;
+        position:absolute;
+        display:none;
+        z-index: 10;
+    }
+
+    #enigma div.legend{
+        position: absolute;
+        width: 100%;
+        bottom: -40px;
+        text-align: center;
+        font-size: 200%;
+        color: #FFF;
+        z-index: 10;
+    }
+
+    #enigma div.breadcrumb{
+        position: absolute;
+        top: -40px;
+        color: #FFF;
+        padding: 10px;
+    }
+
+    #valid, #help{
+        width: 0px;
+        height: 0px;
+        position: absolute;
+        border-radius: 130px;
+        background-color: rgba(0,0,0,0.7);
+        bottom: -260px;
+        padding: 130px;
+        cursor: pointer;
+        z-index: 11;
+    }
+    #valid{
+        right: -260px;
+    }
+    #help{
+        left: -260px;
+    }
+
+    #valid span{
+        width: 90px;
+        height:80px;
+        background: url('../../ui/enigma_sheet.png') no-repeat;
+        background-position:  0 -105px;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+
+    }
+
+    #help span{
+        width: 70px;
+        height:100px;
+        background: url('../../ui/enigma_sheet.png') no-repeat;
+        background-position:  0 -210px;
+        position: absolute;
+        top: 32px;
+        left: 131px;
+    }
+
+    #helpScreen{
+        width: 82%;
+        height: 60%;
+        position: absolute;
+        background: rgba(0,0,0,0.9);
+        left: 50px;
+        top: 40px;
+        border-radius: 20px;
+        padding: 40px;
+        color: #FFF;
+        z-index: 30;
+        font-size: 250%;
+        display: none;
+    }
+
+    #helpScreen div{
+        margin-top: 20px;
+        text-align: center;
+    }
+    #helpScreen div.accept{
+        float: right;
+        margin-top: 40px;
+        width: 35%;
+        font-size: 270%;
+        text-align: right;
+        cursor: pointer;
+    }
+    #helpScreen div.accept:hover, #helpScreen div.accept:focus{
+        color: green;
+    }
+    #helpScreen div.deny{
+        float: left;
+        margin-top: 40px;
+        width: 35%;
+        font-size: 270%;
+        text-align: left;
+        cursor: pointer;
+    }
+    #helpScreen div.deny:hover, #helpScreen div.deny:focus{
+        color: red;
+    }
+
+
+    #endEnigma{
+        width:100%;
+        height:100%;
+        background-color: #000;
+        position: absolute;
+        display: none;
+        z-index: 20;
+    }
+
+    #endEnigma h1{
+        color: #FFF;
+        font-size: 260%;
+        position: absolute;
+        top: 90px;
+        left: -200px;
+    }
+
+    #endEnigma h2{
+        color: #FFF;
+        font-size: 200%;
+        position: absolute;
+        top: 290px;
+        left: 301px;
+        color: rgba(255,255,255,0.7);
+        border-top: 1px solid #fff;
+        padding-top: 13px;
+        width: 259px;
+    }
+
+    #endEnigma span{
+        width: 180px;
+        height: 98px;
+        position: absolute;
+        top: 200px;
+        background: url('../../ui/nut.png') no-repeat 200px 0;
+        left: 200px;
+        color: #FFF;
+        font-size: 300%;
+        padding-top: 40px;
+        text-align: right;
+        padding-right: 100px;
+        animation:  spaceboots2 1s linear infinite;
+    }
+
+    #endEnigma div{
+        color: #FFF;
+        position: absolute;
+        top: 247px;
+        left: 490px;
+        font-size: 240%;
+    }
+
+    #finalScore{
+        position: absolute;
+        left: -400px;
+        top: 300px;
+        color: #808080;
+        font-size: 150%;
+        background: url('../../ui/nut.png') no-repeat right 0;
+        background-size: 55px;
+        padding: 10px 60px 13px 0;
+        animation:  spaceboots2 1s linear infinite;
+    }
+    #finalScore span{
+        color: #FFF;
+        font-size: 160%;
+    }
+    #finalScore img{
+        margin-bottom: 40px;
+        margin-left: 8px;
+        width: 60px;
+    }
+    #blackout div.ender{
+        background: url('../../ui/docky.png');
+        position: absolute;
+        right: 80px;
+        width: 260px;
+        height: 276px;
+        top: 120px;
+    }
+}
