@@ -110,7 +110,7 @@ var core = {
                         $.jStorage.set(self.story+'.episodeIndex', episodeIndex);
                         if(typeof episodeData.episodes[episodeIndex] == 'undefined')
                         {
-                            alert('GAME OVER');
+                            self.toggleOptionsScreen(1);
                             return;
                         } else {
                             $('#options').animate({left: '-=160', bottom: '-=160'}, 700, 'easeInOutBack');
@@ -124,6 +124,11 @@ var core = {
 
                     $('#options, #valid').click(function(){
                        self.toggleOptionsScreen();
+                    });
+
+                    $('#board span').click(function(){
+                        self.flush();
+                        window.location.reload();
                     });
                 });
             });
@@ -140,21 +145,25 @@ var core = {
     /**
      * Show or hide options screen
      */
-    toggleOptionsScreen: function(){
-        if($('#optionsForm').hasClass('open')){
+    toggleOptionsScreen: function(screenNum){
+        if($('#board').hasClass('open')){
             // Fermeture
-            $('#optionsForm').toggleClass('open');
+            $('#board').toggleClass('open');
             $('#valid').animate({right: '-=130', bottom: '-=130'}, 700, 'easeInOutBack');
             $('#macaron').animate({top: '60px'}, 700, 'easeInOutBack');
             $('#options').animate({left: '+=160', bottom: '+=160'}, 700, 'easeInOutBack');
             $('#start').animate({right: '+=160', bottom: '+=160'}, 700, 'easeInOutBack');
         } else {
             // Ouverture
+            screenNum = screenNum || 0;
+            $('#board>div').hide();
+            $('#board>div').eq(screenNum).show();
+
             $('#macaron').animate({top: '-280px'}, 700, 'easeInOutBack');
             $('#options').animate({left: '-=160', bottom: '-=160'}, 700, 'easeInOutBack');
             $('#start').animate({right: '-=160', bottom: '-=160'}, 700, 'easeInOutBack');
             $('#valid').animate({right: '+=130', bottom: '+=130'}, 700, 'easeInOutBack');
-            $('#optionsForm').toggleClass('open');
+            $('#board').toggleClass('open');
         }
     },
 

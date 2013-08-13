@@ -169,7 +169,7 @@
         animation-timing-function:linear;
     }
 
-    #optionsForm{
+    #board{
         background: rgba(0,0,0,0.7);
         width: 50%;
         height: 80%;
@@ -184,14 +184,26 @@
         font-size: 150%;
     }
 
-    #optionsForm h3{
+    #board h3{
         font-size: 180%;
         padding: 0;
         margin: 0;
     }
 
-    #optionsForm.open{
+    #board.open{
         left: 3%;
+    }
+
+    #board span{
+        width: 48px;
+        height: 56px;
+        background: url("http://localhost/~vincent.boucinha/docky/css/core/../../ui/play.png");
+        -webkit-transform: scale(-0.5, 0.5);
+        filter: FlipH;
+        display: block;
+        border: 0 solid white;
+        border-right-width: 6px;
+        cursor: pointer;
     }
 
     #macaron{
