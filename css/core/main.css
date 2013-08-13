@@ -542,20 +542,30 @@
         z-index: 20;
     }
 
+    #endEnigmaContainer{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 260px;
+        height: 230px;
+        margin: -135px 0 0 -130px;
+    }
+
     #endEnigma h1{
         color: #FFF;
         font-size: 260%;
         position: absolute;
-        top: 90px;
-        left: -200px;
+        top: -30px;
+        left: -1500px;
+        text-align: right;
+        width: 100%;
     }
 
     #endEnigma h2{
         color: #FFF;
         font-size: 200%;
         position: absolute;
-        top: 290px;
-        left: 301px;
+        top: 150px;
         color: rgba(255,255,255,0.7);
         border-top: 1px solid #fff;
         padding-top: 13px;
@@ -566,9 +576,9 @@
         width: 180px;
         height: 98px;
         position: absolute;
-        top: 200px;
+        top: 60px;
         background: url('../../ui/nut.png') no-repeat 200px 0;
-        left: 200px;
+        left: -95px;
         color: #FFF;
         font-size: 300%;
         padding-top: 40px;
@@ -577,12 +587,14 @@
         animation:  spaceboots2 1s linear infinite;
     }
 
-    #endEnigma div{
+    #endEnigma div.addToScore{
         color: #FFF;
         position: absolute;
-        top: 247px;
-        left: 490px;
         font-size: 240%;
+        top: 105px;
+        right: 0;
+        font-size: 240%;
+        text-align: right;
     }
 
     #finalScore{

@@ -157,7 +157,7 @@ var core = {
             //soundObject.setAttribute('src', 'media/loading_screen.ogg');
             //soundObject.play();
             self.footprints();
-            var $chapter = $('#blackout div.$chapter');
+            var $chapter = $('#blackout div.chapter');
             $('h3', $chapter).html(self.episode.episodeTitle);
             $('span', $chapter).eq(0).html(self.episode.episodeNumber).css('opacity', 1);
             $chapter.css('bottom', '-' + $('body').css('height'));
@@ -201,7 +201,9 @@ var core = {
         this.loadingScreen = false;
         $('#blackout div.foot').fadeOut();
         $('#blackout div.chapter span').eq(1).fadeOut('fast');
-        $('#blackout div.chapter .blink').fadeOut(200);
+        $('#blackout div.chapter .blink').fadeOut(100, function(){
+            $('#blackout div.chapter').css('width', '100%');
+        });
         $('#blackout div.chapter').animate({left: '105%'}, 900, 'easeInOutBack', function(){
             //$('#blackout').fadeOut('slow', function(){
                 if(callback != null)
@@ -344,8 +346,6 @@ var core = {
 
         self.enigmaActions();
         $('#introEnigma').fadeOut();
-
-
     },
 
     /**
@@ -411,8 +411,9 @@ var core = {
     enigmaEnd: function(nbTry){
         var self=this;
         var $enigmaEnd = $('<div>').attr('id', 'endEnigma').appendTo($('#window'));
-        $('<h1>').html('Bravo !').appendTo($enigmaEnd);
-        $('<h2>').html('Enigme '+self.activeEnigma).appendTo($enigmaEnd);
+        var $enigmaEndContainer = $('<div>').attr('id', 'endEnigmaContainer').appendTo($enigmaEnd);
+        $('<h1>').html('Bravo !').appendTo($enigmaEndContainer);
+        $('<h2>').html('Enigme '+self.activeEnigma).appendTo($enigmaEndContainer);
 
         $enigmaEnd.fadeIn('slow', function(){
             self.activeEngine.clean();
@@ -421,27 +422,27 @@ var core = {
 
             var num = _.max([40 - (nbTry*10), 10]);
             var score = 0 || $.jStorage.get(self.story+'.playerScore');
-            $('<span>').html(score).appendTo($enigmaEnd);
-            $('<div>').html('+'+num).appendTo($enigmaEnd);
+            $('<span>').html(score).appendTo($enigmaEndContainer);
+            $('<div>').addClass('addToScore').html('+'+num).appendTo($enigmaEndContainer);
 
             _.delay(function(){
 
-                $('h1', $enigmaEnd).animate({left: '380px'}, 700, 'easeInOutBack', function(){
-                    $('h1', $enigmaEnd).delay(1600).animate({left: '1080px'}, 700, 'easeInOutBack');
+                $('h1', $enigmaEndContainer).animate({left: '-5px'}, 700, 'easeInOutBack', function(){
+                    $('h1', $enigmaEndContainer).delay(1600).animate({left: '1500px'}, 700, 'easeInOutBack');
                 });
 
                 for (var i=0; i < num; i++) {
                     _.delay(function(){
                         num--;
                         score++;
-                        $('span', $enigmaEnd).html(score);
-                        $('div', $enigmaEnd).html('+'+num);
+                        $('span', $enigmaEndContainer).html(score);
+                        $('div.addToScore', $enigmaEndContainer).html('+'+num);
                     }, i*130);
                 }
 
                 _.delay(function(){
                     $.jStorage.set(self.story+'.playerScore', score);
-                    $('div', $enigmaEnd).fadeOut();
+                    $('div.addToScore', $enigmaEnd).fadeOut();
                 }, i*130);
 
                 _.delay(function(){
