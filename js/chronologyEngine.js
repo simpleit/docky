@@ -37,14 +37,16 @@ var nbTry = 0,
             this.container.show();
             nbTry = 0;
 
-            var line = $('<div>').attr('id', 'chronologyLine').appendTo(this.container);
+            var chronologyBubbleContainer = $('<div>').attr('id', 'chronologyBubbleContainer').appendTo(this.container);
+
+            var line = $('<div>').attr('id', 'chronologyLine').appendTo(chronologyBubbleContainer);
             $('<span>').html('Début').appendTo(line);
             $('<span>').html('Fin').appendTo(line);
 
             for (var i=1; i<5; i++ ) {
-                $('<div>').attr('id', 'chronologyBub'+i).addClass('chronologyBubble').hide().appendTo(this.container).delay(i*150 + 200).fadeIn();
+                $('<div>').attr('id', 'chronologyBub'+i).addClass('chronologyBubble').hide().appendTo(chronologyBubbleContainer).delay(i*150 + 200).fadeIn();
             }
-            $('<a href="#" class="up"></a><span></span><a href="#" class="down"></a>').appendTo('div.chronologyBubble');
+            $('<a href="javascript:void(null);" class="up"></a><span></span><a href="javascript:void(null);" class="down"></a>').appendTo('div.chronologyBubble');
 
             this.start(screen);
         },

@@ -201,7 +201,7 @@ var core = {
         this.loadingScreen = false;
         $('#blackout div.foot').fadeOut();
         $('#blackout div.chapter span').eq(1).fadeOut('fast');
-        $('#blackout div.chapter').css('width', '1300');
+        $('#blackout div.chapter .blink').fadeOut('fast');
         $('#blackout div.chapter').animate({left: '+=2000'}, 900, 'easeInOutBack', function(){
 
         //$('#blackout').fadeOut('slow', function(){
@@ -359,7 +359,7 @@ var core = {
             $enigma = $('#enigma'),
             help = '<div>'+self.activeScreen.help+'</div><div class="accept">Oui</div><div class="deny">Non</div>',
             $help = $('<div>').attr('id', 'helpScreen').prependTo($enigma).html(help),
-            $valid = $('<a>').attr('id', 'valid').appendTo($enigma);
+            $valid = $('<a>').attr('id', 'valid').addClass('roundedCorner cornerRight cornerSmall').appendTo($enigma);
 
         $('div.accept', $help).click(function(){
             self.activeEngine.help();
@@ -369,7 +369,7 @@ var core = {
             self.toggleHelpScreen(false);
         });
 
-        $('<a>').attr('id', 'help').appendTo($enigma);
+        $('<a>').attr('id', 'help').addClass('roundedCorner cornerLeft cornerSmall').appendTo($enigma);
         $('<span>').appendTo($valid);
         $('<span>').appendTo($('#help'));
 

@@ -5,8 +5,8 @@
 }
 
 #enigma.associate{
-    background-repeat: no-repeat;
-    background-size: 100% auto;
+    background-size: cover;
+    background-position: center center;
 }
 
 #associateStack{

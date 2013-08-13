@@ -104,18 +104,15 @@
         font-family: "BubblegumSansRegular", "BradyBunchRemastered";
     }
 
-    #window{
-        width: 990px;
-        height: 557px;
-        margin: 30px auto;
-        position:relative;
+    html, body, #window, #converse, #enigma {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
         overflow: hidden;
-    }
-
-    #window.welcomeScreen{
-        background-position: top left;
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
+        position: absolute;
+        background-size: cover;
+        background-position: center center;
     }
 
     #blackout{
@@ -125,19 +122,48 @@
         position: absolute;
     }
 
-    #start, #options{
+    .roundedCorner {
         width: 0px;
         height: 0px;
         position: absolute;
         border-radius: 160px;
         background-color: rgba(0,0,0,0.7);
+        background-clip: padding-box;
+        cursor: pointer;
         bottom: -320px;
         padding: 160px;
+        transition: margin .2s;
     }
-    #start{
+    .roundedCorner.cornerSmall {
+        padding: 130px;
+        bottom: -260px;
+    }
+
+    .roundedCorner.cornerRight {
         right: -320px;
-        cursor: pointer;
     }
+
+    .roundedCorner.cornerRight:hover {
+        margin: 0 10px 10px 0;
+    }
+
+    .roundedCorner.cornerLeft {
+        left: -320px;
+    }
+
+    .roundedCorner.cornerLeft:hover {
+        margin: 0 0 10px 10px;
+    }
+
+    .roundedCorner.cornerSmall.cornerRight {
+        right: -260px;
+    }
+
+    .roundedCorner.cornerSmall.cornerLeft {
+        left: -260px;
+    }
+
+    
 
     #start a{
         width: 48px;
@@ -151,12 +177,8 @@
         animation-iteration-count:infinite;
         animation-timing-function:linear;
     }
-    #options{
-        left: -320px;
-    }
 
     #options a{
-        cursor: pointer;
         width: 60px;
         height:60px;
         background: url('../../ui/gear.png');
@@ -174,7 +196,7 @@
         width: 50%;
         height: 80%;
         color: #FFF;
-        border-radius: 50px;
+        border-radius: 30px;
         padding: 20px;
         left: -100%;
         top: 5%;
@@ -199,8 +221,9 @@
         height: 278px;
         position: absolute;
         background: url('../../ui/macaron.png') no-repeat left top;
-        left: 348px;
+        left: 50%;
         top: -280px;
+        margin-left: -147px;
     }
 
 
@@ -215,7 +238,6 @@
         position: absolute;
         left: 200px;
         top: -40px;
-
     }
     #blackout div.chapter h3{
         margin: 0;
@@ -259,12 +281,6 @@
     CHARACTERS
     ***************/
     #converse{
-        width: 990px;
-        height: 557px;
-        background-repeat: no-repeat;
-        background-size: 101% auto;
-        position:absolute;
-        overflow: hidden;
         display: none;
     }
 
@@ -345,7 +361,7 @@
         right:15px;
         display: none;
         cursor: pointer;
-        animation:  nextButton 1s linear infinite;
+        animation: nextButton 1s linear infinite;
     }
 
     .bubble-arrow {
@@ -391,8 +407,8 @@
     #introEnigma{
         position: absolute;
         color: white;
-        width:100%;
-        height:100%;
+        width: 100%;
+        height: 100%;
         background-color: #000;
         display: none;
         z-index: 20;
@@ -411,9 +427,6 @@
     }
 
     #enigma{
-        width: 990px;
-        height: 557px;
-        position:absolute;
         display:none;
         z-index: 10;
     }
@@ -436,14 +449,7 @@
     }
 
     #valid, #help{
-        width: 0px;
-        height: 0px;
-        position: absolute;
-        border-radius: 130px;
-        background-color: rgba(0,0,0,0.7);
-        bottom: -260px;
         padding: 130px;
-        cursor: pointer;
         z-index: 11;
     }
     #valid{
@@ -457,30 +463,30 @@
         width: 90px;
         height:80px;
         background: url('../../ui/enigma_sheet.png') no-repeat;
-        background-position:  0 -105px;
+        background-position: 0 -105px;
         position: absolute;
         top: 30px;
         left: 30px;
-
     }
 
     #help span{
         width: 70px;
         height:100px;
         background: url('../../ui/enigma_sheet.png') no-repeat;
-        background-position:  0 -210px;
+        background-position: 0 -210px;
         position: absolute;
         top: 32px;
         left: 131px;
     }
 
     #helpScreen{
-        width: 82%;
-        height: 60%;
+        width: 550px;
+        height: 210px;
         position: absolute;
         background: rgba(0,0,0,0.9);
-        left: 50px;
-        top: 40px;
+        left: 50%;
+        top: 50%;
+        margin: -155px -345px;
         border-radius: 20px;
         padding: 40px;
         color: #FFF;
