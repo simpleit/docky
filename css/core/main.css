@@ -236,26 +236,28 @@
         color: #FFF;
         font-size: 200%;
         position: absolute;
-        left: 200px;
-        top: -40px;
+        left: 10%;
+        bottom: 105%;
+        height: 100px;
+        width: auto;
     }
     #blackout div.chapter h3{
         margin: 0;
         padding: 0;
     }
     #blackout div.chapter span{
-        color:#808080;
+        color: #808080;
         font-size: 60%;
         opacity: 0;
     }
     #blackout div.chapter span.blink:last-child{
-        color:#b0b0b0;
-        float:right;
+        color: #b0b0b0;
+        float: right;
         animation-name: softBlink;
-        animation-duration:0.7s;
-        animation-iteration-count:infinite;
-        animation-direction:alternate;
-        animation-timing-function:linear;
+        animation-duration: .7s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-timing-function: linear;
 
         font-family: 'Calibri', Arial;
         font-size: 50%;
@@ -263,7 +265,7 @@
 
     #blackout div.foot{
         background: url('../../ui/footprint.png');
-        width:37px;
+        width: 37px;
         height: 46px;
         right: 320px;
         position: absolute;
@@ -291,7 +293,6 @@
         bottom: -13px;
         background-repeat: no-repeat;
         background-position: -260px 0;
-
     }
     #converse div.rightCharacter{
         right: -300px;
@@ -351,14 +352,14 @@
         padding: 8px;
         text-align: center;
         text-decoration: none;
-        display:none;
+        display: none;
     }
 
     .bubble img.next{
-        width:15px;
-        position:absolute;
-        bottom:15px;
-        right:15px;
+        width: 15px;
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
         display: none;
         cursor: pointer;
         animation: nextButton 1s linear infinite;

@@ -160,8 +160,8 @@ var core = {
             var chapter = $('#blackout div.chapter');
             $('h3', chapter).html(self.episode.episodeTitle);
             $('span', chapter).eq(0).html(self.episode.episodeNumber).css('opacity', 1);
-            chapter.css('top', '-40px');
-            chapter.animate({top: '250px'}, 1700, 'easeOutBack', function(){
+            chapter.css('bottom', '-' + $('body').css('height'));
+            chapter.animate({bottom: '200px'}, 1000, 'easeOutBack', function(){
                 $('span:last-child', chapter).addClass('blink');
             });
         }, 500);
@@ -177,11 +177,11 @@ var core = {
             score = $.jStorage.get(self.story+'.playerScore');
         $('h3', $chapter).html(self.episode.episodeNumber+' terminé');
         $('span', $chapter).eq(0).html(self.episode.episodeTitle);
-        $chapter.css({width: 'auto', left: '-=2000', top: '-140px'});
+        $chapter.css({width: 'auto', left: '-=2000', bottom: '-' + $('body').css('height')});
 
         var finalScore = $('<div>').attr('id', 'finalScore').html('Tu repars avec <span>'+score+'</span>');
         $blackout.fadeIn();
-        $chapter.animate({top: '150px'}, 1700, 'easeOutBack', function(){
+        $chapter.animate({bottom: '180px'}, 1000, 'easeOutBack', function(){
             finalScore.appendTo('#blackout').animate({left: '200px'}, 1700, 'easeInOutCirc');
         });
         $('<div>').addClass('ender').appendTo($blackout);
@@ -201,14 +201,12 @@ var core = {
         this.loadingScreen = false;
         $('#blackout div.foot').fadeOut();
         $('#blackout div.chapter span').eq(1).fadeOut('fast');
-        $('#blackout div.chapter .blink').fadeOut('fast');
-        $('#blackout div.chapter').animate({left: '+=2000'}, 900, 'easeInOutBack', function(){
-
-        //$('#blackout').fadeOut('slow', function(){
-        if(callback != null)
-            callback();
-        //});
-
+        $('#blackout div.chapter .blink').fadeOut(200);
+        $('#blackout div.chapter').animate({left: '105%'}, 900, 'easeInOutBack', function(){
+            //$('#blackout').fadeOut('slow', function(){
+                if(callback != null)
+                    callback();
+            //});
         });
     },
 

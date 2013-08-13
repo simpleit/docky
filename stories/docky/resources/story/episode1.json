@@ -76,7 +76,7 @@
             "engine": "associate",
             "background": "enigma.png",
             "stylesheet": "associate.css",
-            "legend": "Qui mange quoi",
+            "legend": "Qui mange quoi ?",
             "help": "Veux-tu que je supprime les réponses inutiles ?",
             "assets" : {
                 "stack": "enigma1.png"
