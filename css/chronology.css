@@ -4,25 +4,34 @@
     100% { transform: translate(0, 0); }
 }
 
+#chronologyBubbleContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 270px;
+    width: 700px;
+    margin: -135px 0 0 -350px;
+}
+
 #chronologyLine{
     position: absolute;
     width: 700px;
     height: 2px;
-    left: 140px;
-    top: 250px;
+    left: 0;
+    top: 50%;
     background-color: #FFF;
 }
 
 #chronologyLine span{
-    padding: 17px 42px 34px 10px;
-    width: 0px;
-    height: 0px;
+    width: 50px;
+    line-height: 53px;
+    height: 50px;
     border-radius: 50px;
     background-color: #FFF;
     text-align: center;
     margin-top: -24px;
-    display: inline-block;
-
+    display: block;
+    float: left;
 }
 #chronologyLine span:last-child{
     float: right;
@@ -30,8 +39,8 @@
 
 div.chronologyBubble{
     position: absolute;
-    top: 120px;
-    left: 215px;
+    top: 0;
+    left: 75px;
     width: 120px;
     height: 120px;
 }
@@ -66,13 +75,13 @@ div.chronologyBubble span{
     background-size: 100% 385%;
 }
 #chronologyBub2{
-    left: 360px;
+    left: 220px;
 }
 #chronologyBub3{
-    left: 505px;
+    left: 365px;
 }
 #chronologyBub4{
-    left: 650px;
+    left: 510px;
 }
 
 
