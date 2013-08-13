@@ -12,36 +12,23 @@
             "lines": [
                 {
                     "position": "left",
-                    "text": "Robert !! ||||||||Besoin d'un coup de main pour remplir ton stock de nourriture ?"
+                    "text": "Et voilà ||||| J'ai terminé mon premier épisode !"
                 },
                 {
                     "position": "right",
-                    "text": "Pourquoi pas !! Mais attention, mes goûts culinaires sont particuliers, comme pour les autres animaux de la forêt. Vérifions tes connaissances ! "
+                    "text": "Donc si tu souhaites poursuivre ton aventure, nos lecteurs devront écrire la suite !!"
                 },
                 {
                     "position": "left",
-                    "text": "Je suis prêt à affronter ton courroux !"
-                }
-            ]
-        },
-        {
-            "id": "screen2",
-            "type": "converse",
-            "leftCharacter": "docky",
-            "rightCharacter": "roger",
-            "background": "converse.jpg",
-            "lines": [
-                {
-                    "position": "left",
-                    "text": "Me revoilà parmi vous"
+                    "text": "D'ailleurs, je suis prêt à répondre à d'autres questions, et pas seulement sur les animaux de la forêt."
                 },
                 {
                     "position": "left",
-                    "text": "J'ai bien envie d'élucider quelques mystères..."
+                    "text": "J'ai bien envie d'apprendre les mathématiques, la programmation, les langues, et plein d'autres choses encore !"
                 },
                 {
                     "position": "right",
-                    "text": "D'ailleurs ||||||||||| je t'ai fait venir pour ça !"
+                    "text": "Un peu de patience, la communauté va te mettre à rude épreuve..."
                 }
             ]
         }
