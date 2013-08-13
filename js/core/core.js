@@ -204,12 +204,12 @@ var core = {
             //soundObject.setAttribute('src', 'media/loading_screen.ogg');
             //soundObject.play();
             self.footprints();
-            var chapter = $('#blackout div.chapter');
-            $('h3', chapter).html(self.episode.episodeTitle);
-            $('span', chapter).eq(0).html(self.episode.episodeNumber).css('opacity', 1);
-            chapter.css('top', '-40px');
-            chapter.animate({top: '250px'}, 1700, 'easeOutBack', function(){
-                $('span:last-child', chapter).addClass('blink');
+            var $chapter = $('#blackout div.chapter');
+            $('h3', $chapter).html(self.episode.episodeTitle);
+            $('span', $chapter).eq(0).html(self.episode.episodeNumber).css('opacity', 1);
+            $chapter.css('bottom', '-' + $('body').css('height'));
+            $chapter.animate({bottom: '200px'}, 1000, 'easeOutBack', function(){
+                $('span:last-child', $chapter).addClass('blink');
             });
         }, 500);
     },
@@ -224,11 +224,11 @@ var core = {
             score = $.jStorage.get(self.story+'.playerScore');
         $('h3', $chapter).html(self.episode.episodeNumber+' terminé');
         $('span', $chapter).eq(0).html(self.episode.episodeTitle);
-        $chapter.css({width: 'auto', left: '-=2000', top: '-140px'});
+        $chapter.css({width: 'auto', left: '-=2000', bottom: '-' + $('body').css('height')});
 
         var finalScore = $('<div>').attr('id', 'finalScore').html('Tu repars avec <span>'+score+'</span>');
         $blackout.fadeIn();
-        $chapter.animate({top: '150px'}, 1700, 'easeOutBack', function(){
+        $chapter.animate({bottom: '180px'}, 1000, 'easeOutBack', function(){
             finalScore.appendTo('#blackout').animate({left: '200px'}, 1700, 'easeInOutCirc');
         });
         $('<div>').addClass('ender').appendTo($blackout);
@@ -248,14 +248,14 @@ var core = {
         this.loadingScreen = false;
         $('#blackout div.foot').fadeOut();
         $('#blackout div.chapter span').eq(1).fadeOut('fast');
-        $('#blackout div.chapter').css('width', '1300');
-        $('#blackout div.chapter').animate({left: '+=2000'}, 900, 'easeInOutBack', function(){
-
-        //$('#blackout').fadeOut('slow', function(){
-        if(callback != null)
-            callback();
-        //});
-
+        $('#blackout div.chapter .blink').fadeOut(100, function(){
+            $('#blackout div.chapter').css('width', '100%');
+        });
+        $('#blackout div.chapter').animate({left: '105%'}, 900, 'easeInOutBack', function(){
+            //$('#blackout').fadeOut('slow', function(){
+                if(callback != null)
+                    callback();
+            //});
         });
     },
 
@@ -300,7 +300,6 @@ var core = {
             self.currentLineNumber = self.lineNumber;
             self.lineNumber++;
         }
-
 
         return true;
     },
@@ -394,8 +393,6 @@ var core = {
 
         self.enigmaActions();
         $('#introEnigma').fadeOut();
-
-
     },
 
     /**
@@ -406,7 +403,7 @@ var core = {
             $enigma = $('#enigma'),
             help = '<div>'+self.activeScreen.help+'</div><div class="accept">Oui</div><div class="deny">Non</div>',
             $help = $('<div>').attr('id', 'helpScreen').prependTo($enigma).html(help),
-            $valid = $('<a>').attr('id', 'valid').appendTo($enigma);
+            $valid = $('<a>').attr('id', 'valid').addClass('roundedCorner cornerRight cornerSmall').appendTo($enigma);
 
         $('div.accept', $help).click(function(){
             self.activeEngine.help();
@@ -416,7 +413,7 @@ var core = {
             self.toggleHelpScreen(false);
         });
 
-        $('<a>').attr('id', 'help').appendTo($enigma);
+        $('<a>').attr('id', 'help').addClass('roundedCorner cornerLeft cornerSmall').appendTo($enigma);
         $('<span>').appendTo($valid);
         $('<span>').appendTo($('#help'));
 
@@ -459,11 +456,11 @@ var core = {
      * @param nbTry
      */
     enigmaEnd: function(nbTry){
-        $('#endEnigma').remove();
         var self=this;
         var $enigmaEnd = $('<div>').attr('id', 'endEnigma').appendTo($('#window'));
-        $('<h1>').html('Bravo !').appendTo($enigmaEnd);
-        $('<h2>').html('Enigme '+self.activeEnigma).appendTo($enigmaEnd);
+        var $enigmaEndContainer = $('<div>').attr('id', 'endEnigmaContainer').appendTo($enigmaEnd);
+        $('<h1>').html('Bravo !').appendTo($enigmaEndContainer);
+        $('<h2>').html('Enigme '+self.activeEnigma).appendTo($enigmaEndContainer);
 
         $enigmaEnd.fadeIn('slow', function(){
             self.activeEngine.clean();
@@ -472,32 +469,33 @@ var core = {
 
             var num = _.max([40 - (nbTry*10), 10]);
             var score = 0 || $.jStorage.get(self.story+'.playerScore');
-            $('<span>').html(score).appendTo($enigmaEnd);
-            $('<div>').html('+'+num).appendTo($enigmaEnd);
+            $('<span>').html(score).appendTo($enigmaEndContainer);
+            $('<div>').addClass('addToScore').html('+'+num).appendTo($enigmaEndContainer);
 
             _.delay(function(){
 
-                $('h1', $enigmaEnd).animate({left: '380px'}, 700, 'easeInOutBack', function(){
-                    $('h1', $enigmaEnd).delay(1600).animate({left: '1080px'}, 700, 'easeInOutBack');
+                $('h1', $enigmaEndContainer).animate({left: '-5px'}, 700, 'easeInOutBack', function(){
+                    $('h1', $enigmaEndContainer).delay(1600).animate({left: '1500px'}, 700, 'easeInOutBack');
                 });
 
                 for (var i=0; i < num; i++) {
                     _.delay(function(){
                         num--;
                         score++;
-                        $('span', $enigmaEnd).html(score);
-                        $('div', $enigmaEnd).html('+'+num);
+                        $('span', $enigmaEndContainer).html(score);
+                        $('div.addToScore', $enigmaEndContainer).html('+'+num);
                     }, i*130);
                 }
 
                 _.delay(function(){
                     $.jStorage.set(self.story+'.playerScore', score);
-                    $('div', $enigmaEnd).fadeOut();
+                    $('div.addToScore', $enigmaEnd).fadeOut();
                 }, i*130);
 
                 _.delay(function(){
                     self.blackFade(function(){
                         $enigmaEnd.hide();
+                        $('#endEnigma').remove();
                         console.log('Enigma End - load next screen');
                         self.loadNextScreen();
                     });
