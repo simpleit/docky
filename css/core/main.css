@@ -490,13 +490,13 @@
     }
 
     #helpScreen{
-        width: 550px;
+        width: 640px;
         height: 210px;
         position: absolute;
         background: rgba(0,0,0,0.9);
         left: 50%;
         top: 50%;
-        margin: -155px -345px;
+        margin: -155px -360px;
         border-radius: 20px;
         padding: 40px;
         color: #FFF;
@@ -509,24 +509,23 @@
         margin-top: 20px;
         text-align: center;
     }
-    #helpScreen div.accept{
-        float: right;
+    #helpScreen div.accept, #helpScreen div.deny {
         margin-top: 40px;
         width: 35%;
         font-size: 270%;
-        text-align: right;
         cursor: pointer;
+        transition: color .1s;
+    }
+    #helpScreen div.accept{
+        float: right;
+        text-align: right;
     }
     #helpScreen div.accept:hover, #helpScreen div.accept:focus{
         color: green;
     }
     #helpScreen div.deny{
         float: left;
-        margin-top: 40px;
-        width: 35%;
-        font-size: 270%;
         text-align: left;
-        cursor: pointer;
     }
     #helpScreen div.deny:hover, #helpScreen div.deny:focus{
         color: red;
