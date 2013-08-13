@@ -157,12 +157,12 @@ var core = {
             //soundObject.setAttribute('src', 'media/loading_screen.ogg');
             //soundObject.play();
             self.footprints();
-            var chapter = $('#blackout div.chapter');
-            $('h3', chapter).html(self.episode.episodeTitle);
-            $('span', chapter).eq(0).html(self.episode.episodeNumber).css('opacity', 1);
-            chapter.css('bottom', '-' + $('body').css('height'));
-            chapter.animate({bottom: '200px'}, 1000, 'easeOutBack', function(){
-                $('span:last-child', chapter).addClass('blink');
+            var $chapter = $('#blackout div.$chapter');
+            $('h3', $chapter).html(self.episode.episodeTitle);
+            $('span', $chapter).eq(0).html(self.episode.episodeNumber).css('opacity', 1);
+            $chapter.css('bottom', '-' + $('body').css('height'));
+            $chapter.animate({bottom: '200px'}, 1000, 'easeOutBack', function(){
+                $('span:last-child', $chapter).addClass('blink');
             });
         }, 500);
     },
@@ -251,7 +251,6 @@ var core = {
             self.currentLineNumber = self.lineNumber;
             self.lineNumber++;
         }
-
 
         return true;
     },
@@ -410,7 +409,6 @@ var core = {
      * @param nbTry
      */
     enigmaEnd: function(nbTry){
-        $('#endEnigma').remove();
         var self=this;
         var $enigmaEnd = $('<div>').attr('id', 'endEnigma').appendTo($('#window'));
         $('<h1>').html('Bravo !').appendTo($enigmaEnd);
@@ -449,6 +447,7 @@ var core = {
                 _.delay(function(){
                     self.blackFade(function(){
                         $enigmaEnd.hide();
+                        $('#endEnigma').remove();
                         console.log('Enigma End - load next screen');
                         self.loadNextScreen();
                     });
