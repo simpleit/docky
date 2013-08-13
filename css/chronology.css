@@ -23,15 +23,15 @@
 }
 
 #chronologyLine span{
-    padding: 17px 42px 34px 10px;
-    width: 0px;
-    height: 0px;
+    width: 50px;
+    line-height: 53px;
+    height: 50px;
     border-radius: 50px;
     background-color: #FFF;
     text-align: center;
     margin-top: -24px;
-    display: inline-block;
-
+    display: block;
+    float: left;
 }
 #chronologyLine span:last-child{
     float: right;

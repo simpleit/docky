@@ -414,7 +414,12 @@
         z-index: 20;
     }
     #introEnigma>div{
-        position:relative;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        height: 500px;
+        width: 880px;
+        margin: -250px 0 0 -440px;
     }
     #introEnigma span{
         position: absolute;
@@ -422,8 +427,13 @@
     }
     #introEnigma h1{
         font-size: 80px;
-        padding-top: 200px;
         text-align: center;
+        margin: 0;
+        height: 80px;
+        top: 50%;
+        position: absolute;
+        width: 100%;
+        margin-top: -40px;
     }
 
     #enigma{
