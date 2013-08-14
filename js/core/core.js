@@ -20,11 +20,15 @@
 var audioPlayer = {
 
     player: null,
-
-    init: function(){
+    format: 'ogg',
+    
+    init: function(format){
         this.player = new Audio();
         this.player.loop = true;
-
+        
+        if(format != undefined && format.length > 1)
+            this.format = format.toLowerCase();
+        
         return this.player;
     },
 
@@ -47,9 +51,23 @@ var audioPlayer = {
 
         player.setAttribute('src', '../../media/converse.ogg');
         player.play();
+    },
+    
+    setVolume: function(volume)
+    {
+    	if (typeof volume == 'number')
+    	{
+    		volume = parseFloat(volume);
+    	
+    		if (volume >= 0 && volume <= 1)
+    			this.player.volume = volume;
+    	}
+    },
+    
+    inverseMuted: function()
+    {
+    	this.player.muted = !this.player.muted;
     }
-
-
 };
 
 var core = {
