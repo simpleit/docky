@@ -66,9 +66,15 @@ var nbTry = 0,
             $('div.chronologyBubble').each(function(i){
                 if(i<2) {
                     $('a', this).unbind('click').css('opacity', 0);
-                    var bubble = $('span', this).data('position', (i+1)),
-                        posCompute = -i*114;
-                    bubble.animate({'background-position-y': posCompute+'px'}, 300, 'swing');
+                    var pos = i,
+                        bubbleY = 116,
+                        bubble = $('span', this).data('position', (i+1)),
+                        posCompute = -i*bubbleY;
+                    bubble.css({
+                        'background-position': '0px '+posCompute+'px',
+                        '-moz-transition': 'all 300ms ease',
+                        'transition': 'all 300ms ease'
+                    });
                 }
             });
         },
