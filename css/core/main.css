@@ -514,7 +514,7 @@
         padding: 40px;
         color: #FFF;
         z-index: 30;
-        font-size: 250%;
+        font-size: 240%;
         display: none;
     }
 
@@ -612,7 +612,7 @@
     #finalScore{
         position: absolute;
         left: -400px;
-        top: 300px;
+        bottom: 150px;
         color: #808080;
         font-size: 150%;
         background: url('../../ui/nut.png') no-repeat right 0;

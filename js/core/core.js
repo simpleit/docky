@@ -242,11 +242,11 @@ var core = {
             score = $.jStorage.get(self.story+'.playerScore');
         $('h3', $chapter).html(self.episode.episodeNumber+' terminé');
         $('span', $chapter).eq(0).html(self.episode.episodeTitle);
-        $chapter.css({width: 'auto', left: '-=2000', bottom: '-' + $('body').css('height')});
+        $chapter.css({width: 'auto', left: '200px', bottom: '-' + $('body').css('height')});
 
         var finalScore = $('<div>').attr('id', 'finalScore').html('Tu repars avec <span>'+score+'</span>');
         $blackout.fadeIn();
-        $chapter.animate({bottom: '180px'}, 1000, 'easeOutBack', function(){
+        $chapter.animate({bottom: '210px'}, 1000, 'easeOutBack', function(){
             finalScore.appendTo('#blackout').animate({left: '200px'}, 1700, 'easeInOutCirc');
         });
         $('<div>').addClass('ender').appendTo($blackout);
