@@ -60,7 +60,10 @@ var associateCardNumber = 0,
             nbTry++;
             for (var i=0; i<6; i++ ) {
                 if($('#associateStack div').eq(i).data('number')>3){
-                    $('#associateStack div').eq(i).css('visibility', 'hidden');
+                    $('#associateTarget div').eq(
+                        $('#associateStack div').eq(i).css('visibility', 'hidden')
+                        .data('dropped')
+                    ).droppable('enable');
                 }
             }
         },
@@ -69,14 +72,33 @@ var associateCardNumber = 0,
          * Handle Drag stop
          */
         handleDragStop: function(event, ui){
+            if(!ui.helper.hasClass( 'dropped' ))
+            {
+                // This part is a security. Normally, these 3 actions should change nothing.
+                $('#associateTarget div').eq(ui.helper.data('dropped')).droppable( 'enable' );
+                if (ui.helper.data( 'correct') == 'ok')
+                {
+                    associateCardNumber--;
+                }
+                ui.helper.data( 'correct', 'ko' );
+
+                // This part is useful
+                ui.helper.draggable( 'option', 'revert', true );
+                ui.helper.animate({top: 0, left: 0});
+                ui.helper.removeData('dropped');
+            }
+        },
+
+        /**
+         * Handle Drag start
+         */
+        handleDragStart: function(event, ui){
             if(ui.helper.hasClass( 'dropped' ))
             {
                 if (ui.helper.data( 'correct') == 'ok')
                 {
                     associateCardNumber--;
                 }
-                ui.helper.draggable( 'option', 'revert', true );
-                ui.helper.animate({top: 0, left: 0});
                 ui.helper.removeClass('dropped');
                 ui.helper.data( 'correct', 'ko' );
                 $('#associateTarget div').eq(ui.helper.data('dropped')).droppable( 'enable' );
@@ -100,7 +122,9 @@ var associateCardNumber = 0,
 
             ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
             ui.draggable.draggable( 'option', 'revert', false );
-            setTimeout(function(){ui.draggable.addClass( 'dropped' );}, 300);
+
+            // Warning : this class setting has to happen before handleDragStop. Normally, it runs like that.
+            ui.draggable.addClass( 'dropped' );
         },
 
         /**
@@ -129,6 +153,7 @@ var associateCardNumber = 0,
                     stack: '#associateStack div',
                     cursor: 'move',
                     revert: true,
+                    start : self.handleDragStart,
                     stop: self.handleDragStop
                 });
             }

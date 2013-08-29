@@ -23,7 +23,8 @@ var nbTry = 0,
         /* Container is mandatory */
         container: null,
 
-
+        /* Define the y-step (px) between two images */
+        yStep : 116,
 
         /**
          * Init engine
@@ -62,13 +63,18 @@ var nbTry = 0,
          * Remove useless cards
          */
         help: function(){
+            var self = this;
             nbTry++;
             $('div.chronologyBubble').each(function(i){
                 if(i<2) {
                     $('a', this).unbind('click').css('opacity', 0);
                     var bubble = $('span', this).data('position', (i+1)),
-                        posCompute = -i*114;
-                    bubble.animate({'background-position-y': posCompute+'px'}, 300, 'swing');
+                        posCompute = -i*self.yStep;
+                    bubble.css({
+                        'background-position': '0px '+posCompute+'px',
+                        '-moz-transition': 'all 300ms ease',
+                        'transition': 'all 300ms ease'
+                    });
                 }
             });
         },
@@ -78,13 +84,12 @@ var nbTry = 0,
          */
         start: function(screen){
             var self=this,
-                numbers = [ 1, 2, 3, 4 ],
-                bubbleY = 116;
+                numbers = [ 1, 2, 3, 4 ];
 
             numbers = _.shuffle(numbers);
 
             $('div.chronologyBubble span').each(function(i){
-                $(this).data('position', numbers[i]).css('background-position', '0 -'+((numbers[i]-1)*bubbleY)+'px');
+                $(this).data('position', numbers[i]).css('background-position', '0 -'+((numbers[i]-1)*self.yStep)+'px');
             });
 
             $('div.chronologyBubble a').click(function(e){
@@ -102,7 +107,7 @@ var nbTry = 0,
                     pos--;
                 }
 
-                var posCompute = -(pos-1)*bubbleY;
+                var posCompute = -(pos-1)*self.yStep;
 
 //                bubble.animate({backgroundPositionY: posCompute+'px'}, 300, 'swing', function(){
 //                    if(pos==0)
@@ -110,7 +115,7 @@ var nbTry = 0,
 //                    if(pos>4)
 //                        pos=1;
 //
-//                    posCompute = -(pos-1)*bubbleY;
+//                    posCompute = -(pos-1)*self.yStep;
 //                    bubble.css({backgroundPositionY: posCompute+'px'});
 //                    bubble.data('position', pos);
 //                });
@@ -126,7 +131,7 @@ var nbTry = 0,
                     if(pos>4)
                         pos=1;
 
-                    posCompute = -(pos-1)*bubbleY;
+                    posCompute = -(pos-1)*self.yStep;
                     bubble.css({
                         'background-position': '0px '+posCompute+'px',
                         '-moz-transition': 'none',
