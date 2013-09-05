@@ -219,7 +219,7 @@
     #board span{
         width: 48px;
         height: 56px;
-        background: url("http://localhost/~vincent.boucinha/docky/css/core/../../ui/play.png");
+        background: url("../../ui/play.png");
         -webkit-transform: scale(-0.5, 0.5);
         filter: FlipH;
         display: block;
