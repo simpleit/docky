@@ -8,3 +8,4 @@ Vous trouverez tous les détails dans la [Documentation](http://simpleit.github.
 
 Si la lecture n'est pas votre plat préféré, il existe aussi une [démonstration](http://simpleit.github.io/docky/stories/docky/) de l'outil.
 
+INFRA
